@@ -7,34 +7,34 @@ interface Props {
 }
 
 const { projects } = Astro.props;
-const categories = ['Todos', 'Residencial', 'Corporativo / Comercial', 'Equipamento Público', 'Interiores'];
+const uniqueCategories = ['Todos', ...new Set(projects.map(p => p.data.category))];
 ---
 
-<section id="projetos" class="py-20 md:py-28 relative scroll-mt-20">
+<section id="projetos" class="py-16 md:py-24 relative scroll-mt-20">
   <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
     
     <!-- Section Header & Filter Bar -->
-    <div class="flex flex-col md:flex-row md:items-end justify-between gap-8 mb-12">
+    <div class="flex flex-col md:flex-row md:items-end justify-between gap-6 mb-12">
       <div class="space-y-3 max-w-xl">
-        <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full text-xs font-mono font-medium bg-blueprint-500/10 border border-blueprint-400/30 text-blueprint-400">
-          <span class="w-1.5 h-1.5 rounded-full bg-blueprint-400"></span>
-          <span>Acervo Técnico Selecionado</span>
+        <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full text-xs font-mono font-medium bg-rose-50 dark:bg-rose-950/40 border border-rose-200 dark:border-rose-900/50 text-rose-700 dark:text-rose-300">
+          <span class="w-1.5 h-1.5 rounded-full bg-rose-500"></span>
+          <span>Projetos Acadêmicos UNIP</span>
         </div>
-        <h2 class="text-3xl sm:text-4xl font-display font-bold text-white dark:text-white light:text-gray-950">
+        <h2 class="text-3xl sm:text-4xl font-display font-bold text-gray-900 dark:text-white">
           Projetos em Destaque
         </h2>
-        <p class="text-sm text-gray-300 dark:text-gray-300 light:text-gray-600">
-          Seleção de 5 projetos com narrativa do conceito ao detalhamento executivo, plantas cotadas e modelo BIM.
+        <p class="text-sm text-gray-600 dark:text-gray-300">
+          Trabalhos acadêmicos com foco em modelagem BIM no Archicad, acessibilidade NBR 9050, conforto ambiental e desenho urbano.
         </p>
       </div>
 
       <!-- Filter Buttons -->
       <div class="flex flex-wrap gap-2" id="gallery-filter-buttons">
-        {categories.map((cat, idx) => (
+        {uniqueCategories.map((cat, idx) => (
           <button
             type="button"
             data-filter={cat}
-            class={`px-3.5 py-1.5 rounded-lg text-xs font-mono transition-all filter-btn ${idx === 0 ? 'bg-blueprint-500 text-obsidian-950 font-bold active' : 'border border-white/10 dark:border-white/10 light:border-black/10 bg-white/5 dark:bg-white/5 light:bg-black/5 text-gray-300 dark:text-gray-300 light:text-gray-700 hover:text-white dark:hover:text-white light:hover:text-black hover:border-blueprint-400/40'}`}
+            class={`px-3.5 py-1.5 rounded-lg text-xs font-mono transition-all filter-btn ${idx === 0 ? 'bg-rose-600 text-white font-semibold active shadow-sm' : 'border border-stone-200 dark:border-white/10 bg-white dark:bg-white/5 text-gray-700 dark:text-gray-300 hover:text-rose-600 hover:border-rose-300'}`}
           >
             {cat}
           </button>
@@ -43,7 +43,7 @@ const categories = ['Todos', 'Residencial', 'Corporativo / Comercial', 'Equipame
     </div>
 
     <!-- Projects Grid -->
-    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 lg:gap-8" id="projects-grid">
+    <div class="grid grid-cols-1 md:grid-cols-2 gap-8" id="projects-grid">
       {projects.map((project) => (
         <ProjectCard project={project} />
       ))}
@@ -63,11 +63,11 @@ const categories = ['Todos', 'Residencial', 'Corporativo / Comercial', 'Equipame
 
         // Update active button state
         filterButtons.forEach(b => {
-          b.classList.remove('bg-blueprint-500', 'text-obsidian-950', 'font-bold', 'active');
-          b.classList.add('border', 'border-white/10', 'bg-white/5', 'text-gray-300');
+          b.classList.remove('bg-rose-600', 'text-white', 'font-semibold', 'active', 'shadow-sm');
+          b.classList.add('border', 'border-stone-200', 'dark:border-white/10', 'bg-white', 'dark:bg-white/5', 'text-gray-700', 'dark:text-gray-300');
         });
-        btn.classList.add('bg-blueprint-500', 'text-obsidian-950', 'font-bold', 'active');
-        btn.classList.remove('border', 'border-white/10', 'bg-white/5', 'text-gray-300');
+        btn.classList.add('bg-rose-600', 'text-white', 'font-semibold', 'active', 'shadow-sm');
+        btn.classList.remove('border', 'border-stone-200', 'dark:border-white/10', 'bg-white', 'dark:bg-white/5', 'text-gray-700', 'dark:text-gray-300');
 
         // Filter cards
         projectItems.forEach(card => {
@@ -82,4 +82,3 @@ const categories = ['Todos', 'Residencial', 'Corporativo / Comercial', 'Equipame
     });
   })();
 </script>
-

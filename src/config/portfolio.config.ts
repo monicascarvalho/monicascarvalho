@@ -1,47 +1,41 @@
 export interface PortfolioConfig {
   personal: {
     name: string;
+    fullName: string;
     role: string;
     academicStatus: string;
     institution: string;
+    graduationPeriod: string;
+    previousDegree: string;
     location: string;
     availability: string;
-    bio: string;
     shortPitch: string;
+    bio: string;
+    badges: string[];
   };
-  focusAreas: {
-    title: string;
-    description: string;
-    icon: string;
-  }[];
   downloads: {
     cvUrl: string;
-    portfolioPdfUrl: string;
+    portfolioPdfUrl?: string;
   };
   contact: {
     email: string;
     phone: string;
     whatsappUrl: string;
-    linkedinUrl: string;
-    behanceUrl: string;
+    location: string;
   };
-  bimWorkflow: {
+  experienceSummary: {
+    years: string;
     title: string;
-    badge: string;
+    companies: string[];
     description: string;
-    pillars: {
-      tag: string;
-      title: string;
-      summary: string;
-      deliverables: string[];
-    }[];
+    highlights: string[];
   };
-  skillsCategories: {
-    name: string;
+  skills: {
+    category: string;
     icon: string;
-    tools: {
+    items: {
       name: string;
-      level: 'Avançado' | 'Proficiente' | 'Operacional';
+      level?: string;
       highlight?: boolean;
       description: string;
     }[];
@@ -50,123 +44,117 @@ export interface PortfolioConfig {
 
 export const portfolioConfig: PortfolioConfig = {
   personal: {
-    name: "Davi Cruz",
-    role: "Arquitetura & Urbanismo | Modelagem BIM",
-    academicStatus: "Estudante do 8º período de Arquitetura e Urbanismo",
-    institution: "Faculdade de Arquitetura e Urbanismo",
-    location: "São Paulo, SP (Disponibilidade Híbrida / Presencial)",
-    availability: "Disponível para Estágio (30h/sem) ou Nível Júnior",
-    shortPitch: "Estudante focado em Projetos Executivos, Modelagem da Informação (BIM no ArchiCAD) e rotinas técnicas de Construtora — com vivência em aprovação legal e viabilidade para financiamento bancário.",
-    bio: "Graduando em Arquitetura e Urbanismo com perfil pragmático e ênfase no canteiro e na documentação executiva. Busco aliar sensibilidade espacial e rigor geométrico à precisão da modelagem paramétrica em ArchiCAD. Experiência de estágio em suporte a construtoras, acompanhando processos de aprovação municipal, ritos de Corpo de Bombeiros e formatação de pranchas para viabilidade bancária junto à Caixa Econômica Federal (CEF)."
-  },
-  focusAreas: [
-    {
-      title: "Modelagem BIM no ArchiCAD",
-      description: "Construção virtual de edifícios com parametrização de materiais, extração automatizada de pranchas e quantitativos precisos.",
-      icon: "cube"
-    },
-    {
-      title: "Projetos Executivos & Detalhamento",
-      description: "Desenvolvimento de pranchas de marcenaria, caixilharia, paginação de piso e encontros construtivos de alta resolução técnica.",
-      icon: "ruler"
-    },
-    {
-      title: "Aprovações & Financiamento",
-      description: "Ritos legais em prefeitura, normas de acessibilidade (NBR 9050) e documentação de viabilidade para financiamento (SBPE / CEF).",
-      icon: "stamp"
-    }
-  ],
-  downloads: {
-    cvUrl: "/docs/curriculo.pdf",
-    portfolioPdfUrl: "/docs/portfolio-resumido.pdf"
-  },
-  contact: {
-    email: "contato.davicruz.arq@gmail.com",
-    phone: "+55 (11) 98765-4321",
-    whatsappUrl: "https://wa.me/5511987654321",
-    linkedinUrl: "https://linkedin.com",
-    behanceUrl: "https://behance.net"
-  },
-  bimWorkflow: {
-    title: "Prática Construtiva, Metodologia BIM e Aprovação Corporativa",
-    badge: "Fluxo Integrado ArchiCAD & Construtoras",
-    description: "A prática projetual vai além da volumetria plástica: é a estruturação da informação construtiva para viabilizar orçamentos, aprovações públicas e execução sem retrabalhos na obra.",
-    pillars: [
-      {
-        tag: "01. Modelagem ArchiCAD & OpenBIM",
-        title: "Informação Paramétrica & Coordenação",
-        summary: "Utilização do ArchiCAD como núcleo central do edifício virtual, integrando estruturas, paredes compostas e especificações materiais.",
-        deliverables: [
-          "Modelagem com perfis complexos e propriedades personalizadas",
-          "Mapeamento e exportação IFC 2x3 / IFC4 para compatibilização multidisciplinar",
-          "Geração dinâmica de tabelas de esquadrias e quantitativos de áreas úteis e construídas",
-          "Cortes e elevações sincronizados em tempo real com o modelo tridimensional"
-        ]
-      },
-      {
-        tag: "02. Ritos de Aprovação & Legal",
-        title: "Conformidade Normativa & Corporativa",
-        summary: "Estruturação de pranchas legais para tramitação célere em órgãos públicos e comissões técnicas municipais.",
-        deliverables: [
-          "Aplicação rigorosa da NBR 9050 (Rampas, sanitários PCD e rotas acessíveis)",
-          "Enquadramento no Plano Diretor e Código de Obras (Taxas de ocupação e coeficientes)",
-          "Compatibilização básica com pranchas de Prevenção e Combate a Incêndio (PPCI / Bombeiros)",
-          "Plantas de situação, implantação e memoriais descritivos padrão prefeitura"
-        ]
-      },
-      {
-        tag: "03. Viabilidade & Construtoras",
-        title: "Documentação para Financiamento (CEF/SBPE)",
-        summary: "Apoio a incorporadoras e construtoras na montagem do dossiê técnico de viabilidade exigido por agentes financeiros.",
-        deliverables: [
-          "Adequação às diretrizes de financiamento bancário (Caixa Econômica / SBPE)",
-          "Conferência de compatibilidade entre peças gráficas e planilhas orçamentárias",
-          "Detalhamento construtivo preventivo para evitar patologias e aditivos contratuais",
-          "Padronização de pranchas executivas para leitura direta no canteiro de obras"
-        ]
-      }
+    name: "Monica Carvalho",
+    fullName: "Monica Cleia Sousa Carvalho",
+    role: "Arquitetura e Urbanismo | Modelagem BIM & Desenho Urbano",
+    academicStatus: "Estudante de Arquitetura e Urbanismo (Período Noturno)",
+    institution: "Universidade Paulista (UNIP)",
+    graduationPeriod: "2023 – 2027",
+    previousDegree: "Bacharel em Administração de Empresas (Faculdade Unibero, 2004–2008)",
+    location: "São Paulo, SP (Morumbi)",
+    availability: "Disponível para Estágio / Posição Júnior",
+    shortPitch: "Estudante de Arquitetura e Urbanismo na UNIP em transição de carreira, unindo sólida vivência de mais de 11 anos no setor imobiliário (Plano&Plano, Queiroz Galvão, Rossi, PDG) ao domínio prático de Archicad (BIM), QGIS e desenho técnico.",
+    bio: "Em transição de carreira para a atuação plena em Projetos Arquitetônicos e Desenho Urbano, uno a formação acadêmica em Arquitetura e Urbanismo na Universidade Paulista (UNIP) a uma sólida trajetória de mais de 11 anos no setor imobiliário e da construção civil.\n\nCom ampla vivência na estruturação de processos de financiamento imobiliário (PJ e repasses), contratos e conformidade legal junto a Cartórios de Registro de Imóveis (CRI) em empresas como Plano&Plano, Queiroz Galvão, Rossi e PDG, desenvolvi uma compreensão aprofundada da viabilização técnica do produto imobiliário e da dinâmica das cidades.\n\nHoje, direciono essa maturidade para o desenvolvimento de projetos arquitetônicos, desenho urbano e planejamento espacial, aliando rigor técnico, sensibilidade projetual, acessibilidade (NBR 9050), conforto ambiental e ferramentas digitais contemporâneas.",
+    badges: [
+      "11+ Anos no Setor Imobiliário",
+      "Modelagem BIM (Archicad)",
+      "QGIS & Geoprocessamento",
+      "UNIP (2023–2027)",
+      "Acessibilidade NBR 9050",
+      "Financiamento & Regularização CRI"
     ]
   },
-  skillsCategories: [
+  downloads: {
+    cvUrl: "/docs/curriculo-monica-carvalho.pdf",
+    portfolioPdfUrl: "/docs/curriculo-monica-carvalho.pdf"
+  },
+  contact: {
+    email: "monica.carvalho.arq@gmail.com",
+    phone: "(11) 97626-4686",
+    whatsappUrl: "https://wa.me/5511976264686",
+    location: "São Paulo - SP (Morumbi)"
+  },
+  experienceSummary: {
+    years: "11+ anos",
+    title: "Trajetória Prévia no Mercado Imobiliário & Incorporação",
+    companies: ["Plano&Plano", "Queiroz Galvão", "Solv", "Rossi", "PDG", "Abitare / Goldfarb"],
+    description: "Sólida experiência em incorporadoras de grande porte com processos de crédito corporativo, financiamento imobiliário (PJ e repasses), conformidade contratual e registro de escrituras em Cartórios de Imóveis (CRI).",
+    highlights: [
+      "Visão executiva de produto imobiliário e viabilidade financeira",
+      "Compreensão de normas urbanísticas, código de obras e ritos legais",
+      "Interface técnica entre incorporadora, agentes financeiros e poder público",
+      "Gestão de indicadores e documentação técnica de empreendimentos"
+    ]
+  },
+  skills: [
     {
-      name: "BIM & Modelagem Paramétrica",
-      icon: "building",
-      tools: [
-        { name: "Graphisoft ArchiCAD", level: "Avançado", highlight: true, description: "Modelagem paramétrica, documentação integrada, perfis complexos, pranchas e tabelas dinâmicas." },
-        { name: "OpenBIM / IFC / BCF", level: "Proficiente", highlight: true, description: "Matriz de coordenadas, classificação de elementos IFC e checagem de interferências." },
-        { name: "Autodesk Revit", level: "Operacional", highlight: false, description: "Conhecimento de interface, famílias básicas e documentação preliminar." },
-        { name: "SketchUp Pro + LayOut", level: "Avançado", highlight: false, description: "Estudos volumétricos rápidos, maquetes conceituais e apresentações preliminares." },
-        { name: "Rhinoceros 3D", level: "Operacional", highlight: false, description: "Modelagem de superfícies complexas e geometria de partido arquitetônico." }
+      category: "BIM & Modelagem Digital",
+      icon: "cube",
+      items: [
+        {
+          name: "Graphisoft Archicad",
+          highlight: true,
+          description: "Estudos preliminares, plantas baixas, cortes, fachadas, modelagem 3D paramétrica e documentação técnica integrada."
+        },
+        {
+          name: "AutoCAD",
+          highlight: true,
+          description: "Desenho técnico 2D, pranchas executivas cotadas, espessuras e normas de representação gráfica."
+        }
       ]
     },
     {
-      name: "Documentação Técnica & Normas",
-      icon: "blueprint",
-      tools: [
-        { name: "AutoCAD 2D", level: "Avançado", highlight: true, description: "Pranchas executivas, cotas normatizadas, espessuras de pena e xrefs estruturados." },
-        { name: "NBR 9050 (Acessibilidade)", level: "Avançado", highlight: true, description: "Dimensionamento de sanitários acessíveis, desníveis, faixas táteis e circulação." },
-        { name: "NBR 15575 (Desempenho)", level: "Proficiente", highlight: false, description: "Critérios de conforto térmico, acústico e lumínico na especificação construtiva." },
-        { name: "NBR 6492 (Desenho Técnico)", level: "Avançado", highlight: false, description: "Representação rigorosa de grafismo arquitetônico, simbologias e escalas." }
+      category: "Planejamento Urbano & Território",
+      icon: "map",
+      items: [
+        {
+          name: "QGIS",
+          highlight: true,
+          description: "Mapeamento territorial, geoprocessamento, análise de morfologia urbana, zoneamento e impacto de vizinhança."
+        },
+        {
+          name: "Desenho Urbano & Morfologia",
+          highlight: false,
+          description: "Uso e ocupação do solo, requalificação de espaços públicos e integração à malha viária existente."
+        }
       ]
     },
     {
-      name: "Visualização & Renderização",
-      icon: "image",
-      tools: [
-        { name: "Enscape 3D", level: "Avançado", highlight: true, description: "Renderização em tempo real sincronizada com o ArchiCAD, estudos de insolação e vídeos." },
-        { name: "D5 Render / Twinmotion", level: "Proficiente", highlight: false, description: "Iluminação global, materialidade PBR e ambientação de entorno paisagístico." },
-        { name: "Lumion", level: "Operacional", highlight: false, description: "Composição de cenas e renderização de perspectivas externas diurnas." }
+      category: "Normas, Legislação & Mercado",
+      icon: "shield",
+      items: [
+        {
+          name: "NBR 9050 (Acessibilidade)",
+          highlight: true,
+          description: "Dimensionamento de rampas, sanitários acessíveis, rotas de circulação e conformidade com o desenho universal."
+        },
+        {
+          name: "Código de Obras & Plano Diretor",
+          highlight: false,
+          description: "Adequação a parâmetros urbanísticos municipais, taxas de ocupação e coeficientes de aproveitamento."
+        },
+        {
+          name: "Processos Imobiliários & CRI",
+          highlight: true,
+          description: "Financiamento bancário (PJ e repasses), contratos imobiliários e regularização em Cartórios de Registro de Imóveis."
+        }
       ]
     },
     {
-      name: "Pós-Produção & Diagramação",
-      icon: "layers",
-      tools: [
-        { name: "Adobe InDesign", level: "Avançado", highlight: true, description: "Diagramação de cadernos técnicos, portfólios editoriais e memoriais de projeto." },
-        { name: "Adobe Photoshop", level: "Avançado", highlight: false, description: "Humanização de plantas, pós-produção de perspectivas e ajuste tonal." },
-        { name: "Adobe Illustrator", level: "Proficiente", highlight: false, description: "Diagramas axonométricos, esquemas de partido e infográficos de fluxo." }
+      category: "Apresentação & Gestão",
+      icon: "layout",
+      items: [
+        {
+          name: "Canva & Pacote Gráfico",
+          highlight: false,
+          description: "Diagramação visual de pranchas, memoriais descritivos e apresentação de estudos preliminares."
+        },
+        {
+          name: "Microsoft Excel Avançado",
+          highlight: false,
+          description: "Controle de processos, acompanhamento de indicadores e estruturação de planilhas de gestão."
+        }
       ]
     }
   ]
 };
-

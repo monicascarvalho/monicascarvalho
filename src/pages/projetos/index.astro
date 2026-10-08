@@ -8,21 +8,22 @@ const sortedProjects = allProjects.sort((a, b) => a.data.order - b.data.order);
 ---
 
 <BaseLayout
-  title="Acervo Completo de Projetos | Davi Cruz"
-  description="Catálogo completo de projetos acadêmicos e executivos com foco em BIM, ArchiCAD e prática construtiva."
+  title="Projetos Acadêmicos | Monica Carvalho"
+  description="Projetos acadêmicos de arquitetura e urbanismo desenvolvidos por Monica Carvalho na Universidade Paulista (UNIP) com foco em BIM (Archicad) e peças técnicas normatizadas."
   isHome={false}
 >
   <div class="py-12">
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 mb-4">
-      <div class="space-y-2">
-        <span class="font-mono text-xs text-blueprint-400 uppercase tracking-wider">
-          Índice Cronológico &amp; Tipológico
+      <div class="space-y-3">
+        <span class="inline-flex items-center gap-2 px-3 py-1 rounded-full text-xs font-mono font-medium bg-rose-50 dark:bg-rose-950/60 text-rose-700 dark:text-rose-300 border border-rose-200 dark:border-rose-900/50">
+          <span class="w-1.5 h-1.5 rounded-full bg-rose-500"></span>
+          <span>Arquitetura &amp; Urbanismo (UNIP)</span>
         </span>
-        <h1 class="text-4xl sm:text-5xl font-display font-bold text-white dark:text-white light:text-gray-950">
-          Todos os Projetos
+        <h1 class="text-3xl sm:text-4xl md:text-5xl font-display font-bold text-stone-900 dark:text-white">
+          Projetos Acadêmicos
         </h1>
-        <p class="text-gray-300 dark:text-gray-300 light:text-gray-600 max-w-2xl text-sm sm:text-base">
-          Explore o catálogo estruturado por tipologias, contendo fichas técnicas detalhadas, pranchas normatizadas e detalhes construtivos em escala 1:10.
+        <p class="text-stone-600 dark:text-stone-300 max-w-2xl text-sm sm:text-base leading-relaxed">
+          Projetos desenvolvidos ao longo da graduação, demonstrando rigor técnico, modelagem BIM em Archicad, estudos urbanísticos em QGIS e documentação gráfica completa.
         </p>
       </div>
     </div>
@@ -30,4 +31,3 @@ const sortedProjects = allProjects.sort((a, b) => a.data.order - b.data.order);
     <ProjectGallery projects={sortedProjects} />
   </div>
 </BaseLayout>
-

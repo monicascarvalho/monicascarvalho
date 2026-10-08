@@ -1,97 +1,124 @@
 ---
 import { portfolioConfig } from '@/config/portfolio.config';
-const { bimWorkflow } = portfolioConfig;
+const { experienceSummary } = portfolioConfig;
 ---
 
-<section id="bim-pratica" class="py-20 md:py-28 relative scroll-mt-20">
+<section id="trajetoria" class="py-16 md:py-24 relative scroll-mt-20">
   <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
     
     <!-- Section Header -->
-    <div class="max-w-3xl space-y-4 mb-16">
-      <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full text-xs font-mono font-medium bg-blueprint-500/10 border border-blueprint-400/30 text-blueprint-400">
-        <span class="w-1.5 h-1.5 rounded-full bg-blueprint-400"></span>
-        <span>{bimWorkflow.badge}</span>
+    <div class="max-w-3xl space-y-4 mb-12">
+      <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full text-xs font-mono font-medium bg-rose-50 dark:bg-rose-950/40 border border-rose-200 dark:border-rose-900/50 text-rose-700 dark:text-rose-300">
+        <span class="w-1.5 h-1.5 rounded-full bg-rose-500"></span>
+        <span>{experienceSummary.years} de Experiência Prática</span>
       </div>
-      <h2 class="text-3xl sm:text-4xl md:text-5xl font-display font-bold tracking-tight text-white dark:text-white light:text-gray-950">
-        {bimWorkflow.title}
+      <h2 class="text-3xl sm:text-4xl md:text-5xl font-display font-bold tracking-tight text-gray-900 dark:text-white">
+        {experienceSummary.title}
       </h2>
-      <p class="text-base sm:text-lg text-gray-300 dark:text-gray-300 light:text-gray-600 leading-relaxed">
-        {bimWorkflow.description}
+      <p class="text-base sm:text-lg text-gray-600 dark:text-gray-300 leading-relaxed">
+        {experienceSummary.description}
       </p>
     </div>
 
     <!-- 3 Pillars Grid -->
-    <div class="grid grid-cols-1 lg:grid-cols-3 gap-8">
-      {bimWorkflow.pillars.map((pillar) => (
-        <div class="glass-card p-8 rounded-2xl flex flex-col justify-between relative overflow-hidden group">
-          <div class="space-y-6">
-            <!-- Tag & Indicator -->
-            <div class="flex items-center justify-between">
-              <span class="font-mono text-xs font-semibold text-blueprint-400 tracking-wider">
-                {pillar.tag}
-              </span>
-              <span class="w-2 h-2 rounded-full bg-blueprint-400/30 group-hover:bg-blueprint-400 transition-colors"></span>
-            </div>
+    <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+      <!-- Card 1: Incorporadoras & Empresas -->
+      <div class="glass-card p-6 sm:p-8 rounded-2xl flex flex-col justify-between">
+        <div class="space-y-4">
+          <div class="flex items-center justify-between">
+            <span class="font-mono text-xs font-semibold text-rose-600 dark:text-rose-400 tracking-wider">
+              01. ATUAÇÃO CORPORATIVA
+            </span>
+            <span class="w-2 h-2 rounded-full bg-rose-500"></span>
+          </div>
+          <h3 class="font-display font-bold text-xl text-gray-900 dark:text-white">
+            Grandes Incorporadoras
+          </h3>
+          <p class="text-xs sm:text-sm text-gray-600 dark:text-gray-300 leading-relaxed">
+            Vivência direta nas rotinas de backoffice técnico e crédito corporativo em construtoras e incorporadoras líderes de mercado.
+          </p>
 
-            <!-- Title & Summary -->
-            <div class="space-y-2">
-              <h3 class="font-display font-bold text-xl text-white dark:text-white light:text-gray-900">
-                {pillar.title}
-              </h3>
-              <p class="text-xs sm:text-sm text-gray-400 dark:text-gray-400 light:text-gray-600 leading-relaxed">
-                {pillar.summary}
-              </p>
-            </div>
-
-            <!-- Deliverables List -->
-            <div class="space-y-3 pt-2">
-              <h4 class="font-mono text-[11px] font-semibold text-gray-400 dark:text-gray-400 light:text-gray-500 uppercase tracking-wider">
-                Rotinas &amp; Entregáveis Práticos:
-              </h4>
-              <ul class="space-y-2.5">
-                {pillar.deliverables.map((item) => (
-                  <li class="flex items-start gap-2.5 text-xs text-gray-300 dark:text-gray-300 light:text-gray-700 leading-relaxed">
-                    <svg class="w-4 h-4 text-blueprint-400 shrink-0 mt-0.5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                      <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/>
-                    </svg>
-                    <span>{item}</span>
-                  </li>
-                ))}
-              </ul>
+          <div class="pt-2">
+            <span class="font-mono text-[11px] font-semibold text-gray-500 dark:text-gray-400 uppercase tracking-wider block mb-2">
+              Empresas de Atuação:
+            </span>
+            <div class="flex flex-wrap gap-1.5">
+              {experienceSummary.companies.map((company) => (
+                <span class="px-2.5 py-1 rounded text-xs font-mono bg-rose-50/70 dark:bg-rose-950/30 border border-rose-200 dark:border-rose-900/40 text-rose-800 dark:text-rose-200">
+                  {company}
+                </span>
+              ))}
             </div>
           </div>
+        </div>
+      </div>
 
-          <!-- Bottom Micro Badge -->
-          <div class="mt-8 pt-4 border-t border-white/10 dark:border-white/10 light:border-black/5 flex items-center justify-between text-[11px] font-mono text-gray-400">
-            <span>Aderência à NBR / BIM</span>
-            <span class="text-blueprint-400 font-semibold">100% Verificado</span>
+      <!-- Card 2: Processos, Financiamento e CRI -->
+      <div class="glass-card p-6 sm:p-8 rounded-2xl flex flex-col justify-between">
+        <div class="space-y-4">
+          <div class="flex items-center justify-between">
+            <span class="font-mono text-xs font-semibold text-rose-600 dark:text-rose-400 tracking-wider">
+              02. GESTÃO &amp; CONFORMIDADE
+            </span>
+            <span class="w-2 h-2 rounded-full bg-rose-500"></span>
+          </div>
+          <h3 class="font-display font-bold text-xl text-gray-900 dark:text-white">
+            Financiamento &amp; Cartórios
+          </h3>
+          <p class="text-xs sm:text-sm text-gray-600 dark:text-gray-300 leading-relaxed">
+            Estruturação de financiamento imobiliário (PJ e repasses bancários), análise de contratos e processos em Cartórios de Registro de Imóveis (CRI).
+          </p>
+
+          <div class="pt-2 space-y-2">
+            <div class="flex items-start gap-2 text-xs text-gray-600 dark:text-gray-300">
+              <span class="text-rose-500 font-bold">•</span>
+              <span>Análise de conformidade documental de empreendimentos</span>
+            </div>
+            <div class="flex items-start gap-2 text-xs text-gray-600 dark:text-gray-300">
+              <span class="text-rose-500 font-bold">•</span>
+              <span>Interface entre clientes, incorporadora e agentes bancários</span>
+            </div>
+            <div class="flex items-start gap-2 text-xs text-gray-600 dark:text-gray-300">
+              <span class="text-rose-500 font-bold">•</span>
+              <span>Acompanhamento de indicadores e laudos de avaliação técnica</span>
+            </div>
           </div>
         </div>
-      ))}
-    </div>
+      </div>
 
-    <!-- Practical Workflow Diagram Box -->
-    <div class="mt-12 glass-card p-6 sm:p-8 rounded-2xl border border-white/10 dark:border-white/10 light:border-black/10">
-      <div class="grid grid-cols-1 md:grid-cols-4 gap-6 text-center md:text-left items-center">
-        <div>
-          <span class="font-mono text-xs text-blueprint-400 font-semibold block uppercase">Fluxo Integrado</span>
-          <h4 class="font-display font-bold text-lg text-white dark:text-white light:text-gray-900">Do Modelo à Aprovação</h4>
-        </div>
-        <div class="p-4 rounded-xl glass-spec-item">
-          <span class="font-mono text-[11px] text-gray-400 block mb-1">01. Modelagem</span>
-          <p class="font-semibold text-xs sm:text-sm text-gray-200 dark:text-gray-200 light:text-gray-800">ArchiCAD Paramétrico + Classificação IFC</p>
-        </div>
-        <div class="p-4 rounded-xl glass-spec-item">
-          <span class="font-mono text-[11px] text-gray-400 block mb-1">02. Extração</span>
-          <p class="font-semibold text-xs sm:text-sm text-gray-200 dark:text-gray-200 light:text-gray-800">Pranchas Integradas + Mapas de Quantitativos</p>
-        </div>
-        <div class="p-4 rounded-xl glass-spec-item">
-          <span class="font-mono text-[11px] text-gray-400 block mb-1">03. Tramitação</span>
-          <p class="font-semibold text-xs sm:text-sm text-gray-200 dark:text-gray-200 light:text-gray-800">Prefeitura + Bombeiros + Dossiê CEF/SBPE</p>
+      <!-- Card 3: Visão de Produto & Aplicação no Projeto Arquitetônico -->
+      <div class="glass-card p-6 sm:p-8 rounded-2xl flex flex-col justify-between">
+        <div class="space-y-4">
+          <div class="flex items-center justify-between">
+            <span class="font-mono text-xs font-semibold text-rose-600 dark:text-rose-400 tracking-wider">
+              03. DIFERENCIAL PROJETUAL
+            </span>
+            <span class="w-2 h-2 rounded-full bg-rose-500"></span>
+          </div>
+          <h3 class="font-display font-bold text-xl text-gray-900 dark:text-white">
+            Viabilidade &amp; Modelagem BIM
+          </h3>
+          <p class="text-xs sm:text-sm text-gray-600 dark:text-gray-300 leading-relaxed">
+            União da visão de viabilidade econômica ao rigor projetual em Archicad (BIM) e análise territorial no QGIS.
+          </p>
+
+          <div class="pt-2 space-y-2">
+            <div class="flex items-start gap-2 text-xs text-gray-600 dark:text-gray-300">
+              <span class="text-rose-500 font-bold">•</span>
+              <span>Projetos pensados com rigor normativo (NBR 9050 e Código de Obras)</span>
+            </div>
+            <div class="flex items-start gap-2 text-xs text-gray-600 dark:text-gray-300">
+              <span class="text-rose-500 font-bold">•</span>
+              <span>Documentação técnica limpa e compatibilizada em Archicad</span>
+            </div>
+            <div class="flex items-start gap-2 text-xs text-gray-600 dark:text-gray-300">
+              <span class="text-rose-500 font-bold">•</span>
+              <span>Maturidade profissional para rápida integração em equipes de projetos</span>
+            </div>
+          </div>
         </div>
       </div>
     </div>
 
   </div>
 </section>
-

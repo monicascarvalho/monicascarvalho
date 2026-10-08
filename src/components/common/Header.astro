@@ -14,69 +14,54 @@ const getLink = (hash: string) => isHome ? hash : `/${hash}`;
   <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-20 flex items-center justify-between">
     <!-- Brand / Monograma Arquitetônico -->
     <a href="/" class="group flex items-center gap-3 focus:outline-none">
-      <div class="w-10 h-10 rounded border border-white/15 dark:border-white/15 light:border-black/15 bg-white/5 flex items-center justify-center font-mono font-bold text-sm tracking-wider text-blueprint-400 group-hover:border-blueprint-400 transition-colors">
-        DC
+      <div class="w-10 h-10 rounded-lg border border-rose-200 dark:border-rose-900/60 bg-rose-50/60 dark:bg-rose-950/30 flex items-center justify-center font-mono font-bold text-sm tracking-wider text-rose-600 dark:text-rose-400 group-hover:border-rose-400 transition-colors shadow-sm">
+        MC
       </div>
       <div class="flex flex-col">
-        <span class="font-display font-semibold tracking-tight text-base sm:text-lg text-white dark:text-white light:text-gray-900 group-hover:text-blueprint-400 transition-colors">
+        <span class="font-display font-semibold tracking-tight text-base sm:text-lg text-gray-900 dark:text-white group-hover:text-rose-600 dark:group-hover:text-rose-300 transition-colors">
           {portfolioConfig.personal.name}
         </span>
-        <span class="font-mono text-[11px] text-gray-400 dark:text-gray-400 light:text-gray-600 tracking-wider uppercase">
-          Arquitetura &amp; BIM
+        <span class="font-mono text-[11px] text-gray-500 dark:text-gray-400 tracking-wider uppercase">
+          Arquitetura &amp; Urbanismo · UNIP
         </span>
       </div>
     </a>
 
     <!-- Desktop Navigation -->
     <nav class="hidden md:flex items-center gap-6 lg:gap-8 text-sm font-medium">
-      <a href={getLink('#projetos')} class="text-gray-300 dark:text-gray-300 light:text-gray-700 hover:text-blueprint-400 dark:hover:text-blueprint-400 transition-colors">
+      <a href={getLink('#projetos')} class="text-gray-600 dark:text-gray-300 hover:text-rose-600 dark:hover:text-rose-300 transition-colors">
         Projetos
       </a>
-      <a href={getLink('#bim-pratica')} class="text-gray-300 dark:text-gray-300 light:text-gray-700 hover:text-blueprint-400 dark:hover:text-blueprint-400 transition-colors flex items-center gap-1.5">
-        <span>BIM &amp; Construtora</span>
-        <span class="w-1.5 h-1.5 rounded-full bg-blueprint-400"></span>
+      <a href={getLink('#trajetoria')} class="text-gray-600 dark:text-gray-300 hover:text-rose-600 dark:hover:text-rose-300 transition-colors flex items-center gap-1.5">
+        <span>Trajetória Imobiliária</span>
+        <span class="w-1.5 h-1.5 rounded-full bg-rose-500"></span>
       </a>
-      <a href={getLink('#habilidades')} class="text-gray-300 dark:text-gray-300 light:text-gray-700 hover:text-blueprint-400 dark:hover:text-blueprint-400 transition-colors">
-        Matriz Técnica
+      <a href={getLink('#habilidades')} class="text-gray-600 dark:text-gray-300 hover:text-rose-600 dark:hover:text-rose-300 transition-colors">
+        Competências
       </a>
-      <a href={getLink('#sobre')} class="text-gray-300 dark:text-gray-300 light:text-gray-700 hover:text-blueprint-400 dark:hover:text-blueprint-400 transition-colors">
+      <a href={getLink('#sobre')} class="text-gray-600 dark:text-gray-300 hover:text-rose-600 dark:hover:text-rose-300 transition-colors">
         Sobre
       </a>
-      <a href={getLink('#contato')} class="text-gray-300 dark:text-gray-300 light:text-gray-700 hover:text-blueprint-400 dark:hover:text-blueprint-400 transition-colors">
+      <a href={getLink('#contato')} class="text-gray-600 dark:text-gray-300 hover:text-rose-600 dark:hover:text-rose-300 transition-colors">
         Contato
       </a>
     </nav>
 
-    <!-- Quick Actions (PDF Downloads + Theme Toggle) -->
+    <!-- Quick Actions (PDF Download + Theme Toggle) -->
     <div class="flex items-center gap-3">
       <!-- CV PDF Button -->
       <a
         href={portfolioConfig.downloads.cvUrl}
-        download="Curriculo-Davi-Cruz.pdf"
+        download="Curriculo-Monica-Carvalho.pdf"
         target="_blank"
         rel="noopener noreferrer"
-        class="hidden sm:inline-flex items-center gap-1.5 px-3 py-1.5 rounded-lg text-xs font-mono font-medium border border-white/10 dark:border-white/10 light:border-black/10 bg-white/5 hover:bg-white/10 text-gray-200 dark:text-gray-200 light:text-gray-800 hover:border-blueprint-400/50 transition-all"
-        title="Baixar Curriculo Vitae consolidado em PDF"
+        class="hidden sm:inline-flex items-center gap-1.5 px-3.5 py-1.5 rounded-lg text-xs font-mono font-medium border border-rose-200 dark:border-rose-900/50 bg-rose-50/70 dark:bg-rose-950/30 text-rose-700 dark:text-rose-300 hover:bg-rose-100 dark:hover:bg-rose-900/40 hover:border-rose-300 transition-all shadow-sm"
+        title="Baixar Currículo Vitae em PDF"
       >
-        <svg class="w-3.5 h-3.5 text-blueprint-400" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+        <svg class="w-3.5 h-3.5 text-rose-600 dark:text-rose-400" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
           <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 10v6m0 0l-3-3m3 3l3-3m2 8H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z" />
         </svg>
-        <span>CV (PDF)</span>
-      </a>
-
-      <!-- Resumed Portfolio PDF Button -->
-      <a
-        href={portfolioConfig.downloads.portfolioPdfUrl}
-        download="Portfolio-Resumido-Davi-Cruz.pdf"
-        target="_blank"
-        rel="noopener noreferrer"
-        class="hidden lg:inline-flex items-center gap-1.5 px-3 py-1.5 rounded-lg text-xs font-mono font-medium bg-blueprint-500/10 hover:bg-blueprint-500/20 text-blueprint-400 border border-blueprint-400/30 transition-all"
-        title="Baixar Caderno de Portfólio Resumido (10-15 páginas) para arquivamento offline"
-      >
-        <svg class="w-3.5 h-3.5" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-4l-4 4m0 0l-4-4m4 4V4" />
-        </svg>
-        <span>Caderno PDF</span>
+        <span>Baixar CV (PDF)</span>
       </a>
 
       <ThemeToggle />
@@ -85,7 +70,7 @@ const getLink = (hash: string) => isHome ? hash : `/${hash}`;
       <button
         id="mobile-menu-btn"
         type="button"
-        class="md:hidden p-2 rounded-lg border border-white/10 dark:border-white/10 light:border-black/10 text-gray-300 dark:text-gray-300 light:text-gray-700"
+        class="md:hidden p-2 rounded-lg border border-black/10 dark:border-white/10 text-gray-700 dark:text-gray-300 hover:text-rose-600 transition-colors"
         aria-label="Abrir menu de navegação"
       >
         <svg class="w-5 h-5" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
@@ -96,18 +81,15 @@ const getLink = (hash: string) => isHome ? hash : `/${hash}`;
   </div>
 
   <!-- Mobile Dropdown Navigation -->
-  <div id="mobile-menu" class="hidden md:hidden px-4 pt-2 pb-6 space-y-3 border-t border-white/10 dark:border-white/10 light:border-black/10 bg-obsidian-900/95 dark:bg-obsidian-900/95 light:bg-white/95 backdrop-blur-xl">
-    <a href={getLink('#projetos')} class="block py-2 text-sm text-gray-200 dark:text-gray-200 light:text-gray-800 hover:text-blueprint-400">Projetos em Destaque</a>
-    <a href={getLink('#bim-pratica')} class="block py-2 text-sm text-gray-200 dark:text-gray-200 light:text-gray-800 hover:text-blueprint-400">BIM &amp; Construtora</a>
-    <a href={getLink('#habilidades')} class="block py-2 text-sm text-gray-200 dark:text-gray-200 light:text-gray-800 hover:text-blueprint-400">Matriz de Habilidades</a>
-    <a href={getLink('#sobre')} class="block py-2 text-sm text-gray-200 dark:text-gray-200 light:text-gray-800 hover:text-blueprint-400">Sobre Mim</a>
-    <a href={getLink('#contato')} class="block py-2 text-sm text-gray-200 dark:text-gray-200 light:text-gray-800 hover:text-blueprint-400">Contato &amp; Disponibilidade</a>
-    <div class="pt-2 flex flex-col gap-2">
-      <a href={portfolioConfig.downloads.cvUrl} download class="flex items-center justify-center gap-2 py-2 px-3 rounded text-xs font-mono border border-white/15 text-gray-200">
+  <div id="mobile-menu" class="hidden md:hidden px-4 pt-2 pb-6 space-y-3 border-t border-rose-100 dark:border-white/10 bg-white/95 dark:bg-obsidian-900/95 backdrop-blur-xl">
+    <a href={getLink('#projetos')} class="block py-2 text-sm text-gray-800 dark:text-gray-200 hover:text-rose-600">Projetos em Destaque</a>
+    <a href={getLink('#trajetoria')} class="block py-2 text-sm text-gray-800 dark:text-gray-200 hover:text-rose-600">Trajetória Imobiliária</a>
+    <a href={getLink('#habilidades')} class="block py-2 text-sm text-gray-800 dark:text-gray-200 hover:text-rose-600">Competências</a>
+    <a href={getLink('#sobre')} class="block py-2 text-sm text-gray-800 dark:text-gray-200 hover:text-rose-600">Sobre</a>
+    <a href={getLink('#contato')} class="block py-2 text-sm text-gray-800 dark:text-gray-200 hover:text-rose-600">Contato</a>
+    <div class="pt-2">
+      <a href={portfolioConfig.downloads.cvUrl} download class="flex items-center justify-center gap-2 py-2 px-3 rounded-lg text-xs font-mono font-medium border border-rose-200 dark:border-rose-900 bg-rose-50 dark:bg-rose-950/40 text-rose-700 dark:text-rose-300">
         Baixar CV (PDF)
-      </a>
-      <a href={portfolioConfig.downloads.portfolioPdfUrl} download class="flex items-center justify-center gap-2 py-2 px-3 rounded text-xs font-mono bg-blueprint-500/10 text-blueprint-400 border border-blueprint-400/30">
-        Baixar Caderno Resumido (PDF)
       </a>
     </div>
   </div>
@@ -125,4 +107,3 @@ const getLink = (hash: string) => isHome ? hash : `/${hash}`;
     });
   }
 </script>
-

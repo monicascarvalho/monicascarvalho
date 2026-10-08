@@ -13,9 +13,9 @@ interface Props {
 }
 
 const {
-  title = `${portfolioConfig.personal.name} | Portfólio de Arquitetura & BIM`,
+  title = `${portfolioConfig.personal.name} | Portfólio de Arquitetura & Urbanismo`,
   description = portfolioConfig.personal.shortPitch,
-  image = '/images/projects/01-edificio-multifamiliar-icarai/hero.svg',
+  image = '/images/projects/01-edificio-multifunctional-paulista/prancha-1.png',
   isHome = true,
 } = Astro.props;
 
@@ -23,7 +23,7 @@ const canonicalURL = new URL(Astro.url.pathname, Astro.site || 'http://localhost
 ---
 
 <!doctype html>
-<html lang="pt-BR" class="dark">
+<html lang="pt-BR">
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
@@ -43,14 +43,7 @@ const canonicalURL = new URL(Astro.url.pathname, Astro.site || 'http://localhost
     <meta property="og:description" content={description} />
     <meta property="og:image" content={image} />
 
-    <!-- Twitter -->
-    <meta property="twitter:card" content="summary_large_image" />
-    <meta property="twitter:url" content={canonicalURL} />
-    <meta property="twitter:title" content={title} />
-    <meta property="twitter:description" content={description} />
-    <meta property="twitter:image" content={image} />
-
-    <!-- Preconnect Google Fonts for High Performance Typography -->
+    <!-- Preconnect Google Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link
@@ -58,21 +51,19 @@ const canonicalURL = new URL(Astro.url.pathname, Astro.site || 'http://localhost
       rel="stylesheet"
     />
 
-    <!-- Theme Initialization Script (Prevents FOUC) -->
+    <!-- Theme Initialization Script (Light by Default, respects stored preference) -->
     <script is:inline>
       (function () {
         const storedTheme = localStorage.getItem('theme');
-        if (storedTheme === 'light') {
-          document.documentElement.classList.remove('dark');
-          document.documentElement.classList.add('light');
-        } else {
-          document.documentElement.classList.remove('light');
+        if (storedTheme === 'dark') {
           document.documentElement.classList.add('dark');
+        } else {
+          document.documentElement.classList.remove('dark');
         }
       })();
     </script>
   </head>
-  <body class="min-h-screen flex flex-col relative selection:bg-blueprint-400 selection:text-obsidian-950">
+  <body class="min-h-screen flex flex-col relative selection:bg-rose-200 selection:text-rose-950 dark:selection:bg-rose-900 dark:selection:text-white">
     <NoiseOverlay />
     <Header isHome={isHome} />
     
@@ -83,4 +74,3 @@ const canonicalURL = new URL(Astro.url.pathname, Astro.site || 'http://localhost
     <Footer />
   </body>
 </html>
-

@@ -1,10 +1,6 @@
 ---
 import { getCollection } from 'astro:content';
 import ProjectLayout from '@/layouts/ProjectLayout.astro';
-import SpecTable from '@/components/project/SpecTable.astro';
-import TechnicalSheet from '@/components/project/TechnicalSheet.astro';
-import ProcessCarousel from '@/components/project/ProcessCarousel.astro';
-import DetailSection from '@/components/project/DetailSection.astro';
 
 export async function getStaticPaths() {
   const allProjects = await getCollection('projects');
@@ -23,156 +19,235 @@ export async function getStaticPaths() {
 const { project, prevProject, nextProject } = Astro.props;
 const { data } = project;
 const { Content } = await project.render();
-
-// Generate carousel slides from project images
-const carouselSlides = data.processGallery && data.processGallery.length > 0
-  ? data.processGallery
-  : [
-      { image: data.heroImage, caption: `Estudo Volumétrico Principal: ${data.title}` },
-      { image: data.technicalDrawings[0]?.image || data.heroImage, caption: `Coordenação de Planta e Eixos Estruturais em ArchiCAD` },
-      { image: data.technicalDrawings[1]?.image || data.heroImage, caption: `Corte Esquemático e Estudo de Alturas e Níveis` },
-    ];
 ---
 
 <ProjectLayout project={project} prevProject={prevProject} nextProject={nextProject}>
-  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 space-y-16">
+  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 space-y-12">
     
-    <!-- 1. Project Title & Header Block -->
-    <div class="space-y-4 max-w-4xl">
+    <!-- 1. Header do Projeto & Ações de Download -->
+    <header class="space-y-6">
       <div class="flex flex-wrap items-center gap-2">
-        <span class="px-3 py-1 rounded-full text-xs font-mono font-medium glass-badge">
+        <span class="px-3 py-1 rounded-full text-xs font-mono font-medium bg-rose-50 dark:bg-rose-950/60 text-rose-700 dark:text-rose-300 border border-rose-200 dark:border-rose-900/50">
           {data.category}
         </span>
-        <span class="px-3 py-1 rounded-full text-xs font-mono bg-white/5 border border-white/10 text-gray-300">
+        <span class="px-3 py-1 rounded-full text-xs font-mono bg-stone-100 dark:bg-white/5 border border-stone-200 dark:border-white/10 text-stone-600 dark:text-stone-300">
           {data.location}
         </span>
-        <span class="px-3 py-1 rounded-full text-xs font-mono bg-white/5 border border-white/10 text-blueprint-400 font-semibold">
-          Área: {data.builtArea}
+        <span class="px-3 py-1 rounded-full text-xs font-mono bg-stone-100 dark:bg-white/5 border border-stone-200 dark:border-white/10 text-stone-600 dark:text-stone-300">
+          Ano: {data.year}
         </span>
       </div>
 
-      <h1 class="text-3xl sm:text-4xl md:text-5xl font-display font-bold text-white dark:text-white light:text-gray-950 tracking-tight leading-tight">
-        {data.title}
-      </h1>
-
-      <p class="text-base sm:text-lg text-gray-300 dark:text-gray-300 light:text-gray-600 leading-relaxed font-sans">
-        {data.shortDescription}
-      </p>
-    </div>
-
-    <!-- 2. Hero Project Image with Zoom Preview -->
-    <div class="rounded-2xl overflow-hidden glass-card aspect-[16/9] bg-obsidian-950 relative group">
-      <a
-        href={data.heroImage}
-        data-pswp-width="1600"
-        data-pswp-height="1000"
-        class="pswp-gallery-item block w-full h-full cursor-zoom-in"
-        title="Clique para ampliar render volumétrico"
-      >
-        <img
-          src={data.heroImage}
-          alt={data.heroImageAlt}
-          class="w-full h-full object-cover group-hover:scale-102 transition-transform duration-500"
-        />
-        <div class="absolute bottom-4 right-4 px-3 py-1.5 rounded-lg bg-obsidian-950/80 border border-white/15 text-xs font-mono text-gray-300 backdrop-blur-md flex items-center gap-1.5">
-          <svg class="w-3.5 h-3.5 text-blueprint-400" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0zM10 7v3m0 0v3m0-3h3m-3 0H7"/>
-          </svg>
-          <span>Ampliar Perspectiva</span>
-        </div>
-      </a>
-    </div>
-
-    <!-- 3. Ficha Técnica Rápida & Parâmetros Executivos -->
-    <SpecTable project={project} />
-
-    <!-- 4. Conceito, Partido & Memorial Arquitetônico (Markdown Content) -->
-    <div class="grid grid-cols-1 lg:grid-cols-12 gap-12">
-      <div class="lg:col-span-8 space-y-6">
-        <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full text-xs font-mono font-medium bg-blueprint-500/10 border border-blueprint-400/30 text-blueprint-400">
-          <span class="w-1.5 h-1.5 rounded-full bg-blueprint-400"></span>
-          <span>Memorial Descritivo &amp; Partido</span>
-        </div>
-        
-        <div class="prose prose-invert max-w-none text-gray-300 dark:text-gray-300 light:text-gray-700 space-y-4 leading-relaxed font-sans text-sm sm:text-base">
-          <Content />
-        </div>
-      </div>
-
-      <!-- Lateral: Resumo de Softwares e Entrega -->
-      <div class="lg:col-span-4 space-y-6">
-        <div class="glass-card p-6 rounded-2xl space-y-4">
-          <h4 class="font-mono text-xs font-semibold text-blueprint-400 uppercase tracking-wider">
-            Resumo de Softwares &amp; Formato
-          </h4>
-          <ul class="space-y-3 text-xs font-mono">
-            <li class="flex items-center justify-between pb-2 border-b border-white/5">
-              <span class="text-gray-400">Modelagem BIM</span>
-              <span class="font-semibold text-white">ArchiCAD 27</span>
-            </li>
-            <li class="flex items-center justify-between pb-2 border-b border-white/5">
-              <span class="text-gray-400">Padrão de Troca</span>
-              <span class="font-semibold text-blueprint-400">OpenBIM (IFC 2x3)</span>
-            </li>
-            <li class="flex items-center justify-between pb-2 border-b border-white/5">
-              <span class="text-gray-400">Pranchas Executivas</span>
-              <span class="font-semibold text-white">ABNT NBR 6492</span>
-            </li>
-            <li class="flex items-center justify-between">
-              <span class="text-gray-400">Renderização</span>
-              <span class="font-semibold text-white">Enscape 3D</span>
-            </li>
-          </ul>
-        </div>
-      </div>
-    </div>
-
-    <!-- 5. Carrossel de Evolução do Processo & Croquis -->
-    <div class="space-y-4">
-      <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full text-xs font-mono font-medium bg-blueprint-500/10 border border-blueprint-400/30 text-blueprint-400">
-        <span class="w-1.5 h-1.5 rounded-full bg-blueprint-400"></span>
-        <span>Evolução do Processo Projetual</span>
-      </div>
-      <h3 class="text-2xl font-display font-bold text-white dark:text-white light:text-gray-900">
-        Croquis, Volumetria &amp; Diagramas Conceituais
-      </h3>
-      <ProcessCarousel slides={carouselSlides} />
-    </div>
-
-    <!-- 6. Peças Técnicas com Lightbox e Zoom Profundo PhotoSwipe -->
-    <div class="space-y-6">
-      <div class="space-y-1">
-        <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full text-xs font-mono font-medium bg-blueprint-500/10 border border-blueprint-400/30 text-blueprint-400">
-          <span class="w-1.5 h-1.5 rounded-full bg-blueprint-400"></span>
-          <span>Peças Gráficas Normatizadas</span>
-        </div>
-        <h3 class="text-2xl font-display font-bold text-white dark:text-white light:text-gray-900">
-          Plantas Baixas Cotadas, Cortes &amp; Pranchas Técnicas
-        </h3>
-        <p class="text-xs sm:text-sm text-gray-400 dark:text-gray-400 light:text-gray-600">
-          Clique nas pranchas abaixo para abrir o visualizador com zoom de alta resolução (PhotoSwipe), permitindo inspecionar cotas, eixos e espessuras de traço.
+      <div class="space-y-3">
+        <h1 class="text-3xl sm:text-4xl md:text-5xl font-display font-bold text-stone-900 dark:text-white tracking-tight leading-tight">
+          {data.title}
+        </h1>
+        <p class="text-base sm:text-lg text-stone-600 dark:text-stone-300 max-w-4xl font-sans leading-relaxed">
+          {data.shortDescription}
         </p>
       </div>
 
-      <div class="grid grid-cols-1 lg:grid-cols-2 gap-8">
-        {data.technicalDrawings.map((drawing) => (
-          <TechnicalSheet
-            title={drawing.title}
-            sheetType={drawing.sheetType}
-            scale={drawing.scale}
-            image={drawing.image}
-            highResImage={drawing.highResImage}
-            description={drawing.description}
-          />
+      <!-- Barra de Ações Rápidas (Download PDF e Google Drive) -->
+      <div class="flex flex-wrap items-center gap-3 pt-2">
+        {data.pdfDownloadUrl && (
+          <a
+            href={data.pdfDownloadUrl}
+            download
+            class="inline-flex items-center gap-2 px-5 py-2.5 rounded-xl text-xs sm:text-sm font-mono font-semibold bg-rose-600 text-white hover:bg-rose-700 active:scale-[0.98] transition-all shadow-sm shadow-rose-600/20"
+          >
+            <svg class="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 10v6m0 0l-3-3m3 3l3-3m2 8H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z" />
+            </svg>
+            <span>Baixar Prancha Completa (PDF)</span>
+          </a>
+        )}
+
+        {data.driveUrl && (
+          <a
+            href={data.driveUrl}
+            target="_blank"
+            rel="noopener noreferrer"
+            class="inline-flex items-center gap-2 px-5 py-2.5 rounded-xl text-xs sm:text-sm font-mono font-medium bg-white dark:bg-obsidian-900 border border-stone-200 dark:border-white/10 text-stone-700 dark:text-stone-300 hover:border-rose-400 hover:text-rose-600 dark:hover:text-rose-300 transition-all shadow-sm"
+          >
+            <svg class="w-4 h-4 text-stone-500" fill="currentColor" viewBox="0 0 24 24">
+              <path d="M19.35 10.04C18.67 6.59 15.64 4 12 4 9.11 4 6.6 5.64 5.35 8.04 2.34 8.36 0 10.91 0 14c0 3.31 2.69 6 6 6h13c2.76 0 5-2.24 5-5 0-2.64-2.05-4.78-4.65-4.96zM19 18H6c-2.21 0-4-1.79-4-4 0-2.05 1.53-3.76 3.56-3.97l1.07-.11.5-.95C8.08 7.14 9.94 6 12 6c2.62 0 4.88 1.86 5.39 4.43l.3 1.5 1.53.11c1.56.1 2.78 1.41 2.78 2.96 0 1.65-1.35 3-3 3z"/>
+            </svg>
+            <span>Acessar via Google Drive</span>
+          </a>
+        )}
+
+        <a
+          href="https://wa.me/5511976264686?text=Ol%C3%A1%20Monica,%20vi%20seu%20projeto%20no%20portf%C3%B3lio%20e%20gostaria%20de%20conversar."
+          target="_blank"
+          rel="noopener noreferrer"
+          class="inline-flex items-center gap-1.5 px-4 py-2.5 rounded-xl text-xs sm:text-sm font-mono text-stone-600 dark:text-stone-400 hover:text-rose-600 dark:hover:text-rose-300 transition-colors"
+        >
+          <span>Falar com a Monica sobre este projeto →</span>
+        </a>
+      </div>
+    </header>
+
+    <!-- 2. Ficha Técnica Superficial (Clean & Objetiva) -->
+    <section class="glass-card p-6 sm:p-8 rounded-2xl border border-stone-200/80 dark:border-white/10 bg-white/70 dark:bg-obsidian-900/60 shadow-sm">
+      <h2 class="text-xs font-mono font-semibold text-rose-600 dark:text-rose-400 uppercase tracking-wider mb-5 flex items-center gap-2">
+        <span class="w-1.5 h-1.5 rounded-full bg-rose-500"></span>
+        <span>Ficha Técnica Resumida</span>
+      </h2>
+
+      <div class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-5 text-xs font-mono">
+        <div>
+          <span class="block text-stone-500 dark:text-stone-400 mb-1">Instituição</span>
+          <span class="font-medium text-stone-800 dark:text-stone-100">{data.institution}</span>
+        </div>
+
+        <div>
+          <span class="block text-stone-500 dark:text-stone-400 mb-1">Disciplina</span>
+          <span class="font-medium text-stone-800 dark:text-stone-100">{data.discipline || 'Projeto de Arquitetura'}</span>
+        </div>
+
+        <div>
+          <span class="block text-stone-500 dark:text-stone-400 mb-1">Localização</span>
+          <span class="font-medium text-stone-800 dark:text-stone-100">{data.location}</span>
+        </div>
+
+        <div>
+          <span class="block text-stone-500 dark:text-stone-400 mb-1">Ano Letivo</span>
+          <span class="font-medium text-stone-800 dark:text-stone-100">{data.year}</span>
+        </div>
+
+        <div>
+          <span class="block text-stone-500 dark:text-stone-400 mb-1">Autoria</span>
+          <span class="font-medium text-stone-800 dark:text-stone-100">{data.authorRole}</span>
+        </div>
+
+        <div>
+          <span class="block text-stone-500 dark:text-stone-400 mb-1">Softwares</span>
+          <div class="flex flex-wrap gap-1 mt-0.5">
+            {data.softwares.map((sw) => (
+              <span class="px-1.5 py-0.5 rounded bg-rose-50 dark:bg-rose-950/50 text-rose-700 dark:text-rose-300 text-[10px] border border-rose-200/50 dark:border-rose-900/50 font-semibold">
+                {sw}
+              </span>
+            ))}
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- 3. Memorial e Partido Arquitetônico (Markdown Resumido) -->
+    <section class="space-y-4 max-w-4xl">
+      <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full text-xs font-mono font-medium bg-rose-50 dark:bg-rose-950/50 text-rose-700 dark:text-rose-300 border border-rose-200 dark:border-rose-900/50">
+        <span class="w-1.5 h-1.5 rounded-full bg-rose-500"></span>
+        <span>Partido Arquitetônico &amp; Metodologia</span>
+      </div>
+
+      <div class="prose prose-stone dark:prose-invert max-w-none text-stone-700 dark:text-stone-300 text-sm sm:text-base leading-relaxed">
+        <Content />
+      </div>
+    </section>
+
+    <!-- 4. Galeria de Pranchas Técnicas Reais com Zoom PhotoSwipe -->
+    <section class="space-y-6 pt-6 border-t border-stone-200 dark:border-white/10">
+      <div class="flex flex-col sm:flex-row sm:items-end justify-between gap-3">
+        <div class="space-y-1">
+          <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full text-xs font-mono font-medium bg-rose-50 dark:bg-rose-950/50 text-rose-700 dark:text-rose-300 border border-rose-200 dark:border-rose-900/50">
+            <span class="w-1.5 h-1.5 rounded-full bg-rose-500"></span>
+            <span>Pranchas &amp; Peças Gráficas Normatizadas</span>
+          </div>
+          <h2 class="text-2xl sm:text-3xl font-display font-bold text-stone-900 dark:text-white">
+            Peças Técnicas do Projeto ({data.sheets.length} Pranchas)
+          </h2>
+          <p class="text-xs sm:text-sm text-stone-500 dark:text-stone-400">
+            Clique em qualquer prancha para abrir em alta resolução com ferramentas de zoom e inspeção visual de cotas, eixos e espessuras.
+          </p>
+        </div>
+
+        {data.pdfDownloadUrl && (
+          <a
+            href={data.pdfDownloadUrl}
+            download
+            class="inline-flex items-center gap-1.5 text-xs font-mono font-semibold text-rose-600 dark:text-rose-400 hover:underline"
+          >
+            <span>↓ Baixar arquivo PDF ({data.sheets.length} folhas)</span>
+          </a>
+        )}
+      </div>
+
+      <!-- Grid de Pranchas -->
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+        {data.sheets.map((sheet, index) => (
+          <div class="glass-card rounded-2xl overflow-hidden border border-stone-200/80 dark:border-white/10 bg-white dark:bg-obsidian-900/80 shadow-sm flex flex-col group">
+            
+            <!-- Imagem Clicável com PhotoSwipe -->
+            <div class="relative bg-stone-100 dark:bg-obsidian-950 overflow-hidden aspect-[1.414/1]">
+              <a
+                href={sheet.image}
+                data-pswp-width="3041"
+                data-pswp-height="2150"
+                class="pswp-gallery-item block w-full h-full cursor-zoom-in"
+                title={`${sheet.title} - Clique para ampliar com zoom`}
+              >
+                <img
+                  src={sheet.image}
+                  alt={sheet.title}
+                  loading={index < 2 ? "eager" : "lazy"}
+                  class="w-full h-full object-contain p-2 group-hover:scale-101 transition-transform duration-300"
+                />
+                
+                <!-- Badge de Zoom no Hover -->
+                <div class="absolute bottom-3 right-3 px-2.5 py-1 rounded-lg bg-stone-900/80 text-white border border-white/20 text-xs font-mono flex items-center gap-1.5 opacity-90 group-hover:opacity-100 transition-opacity backdrop-blur-sm">
+                  <svg class="w-3.5 h-3.5 text-rose-300" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0zM10 7v3m0 0v3m0-3h3m-3 0H7" />
+                  </svg>
+                  <span>Zoom</span>
+                </div>
+              </a>
+            </div>
+
+            <!-- Legenda da Prancha -->
+            <div class="p-5 flex-1 flex flex-col justify-between space-y-3 border-t border-stone-100 dark:border-white/5">
+              <div class="space-y-1.5">
+                <div class="flex items-center justify-between text-xs font-mono">
+                  {sheet.sheetNumber && (
+                    <span class="px-2 py-0.5 rounded bg-rose-50 dark:bg-rose-950/50 text-rose-700 dark:text-rose-300 font-semibold border border-rose-200/50 dark:border-rose-900/50">
+                      {sheet.sheetNumber}
+                    </span>
+                  )}
+                  {sheet.scale && (
+                    <span class="text-stone-500 dark:text-stone-400">
+                      Escala: {sheet.scale}
+                    </span>
+                  )}
+                </div>
+
+                <h3 class="font-display font-bold text-base text-stone-900 dark:text-white">
+                  {sheet.title}
+                </h3>
+
+                {sheet.description && (
+                  <p class="text-xs text-stone-600 dark:text-stone-300 leading-relaxed font-sans">
+                    {sheet.description}
+                  </p>
+                )}
+              </div>
+
+              <div class="pt-2 flex items-center justify-between border-t border-stone-100 dark:border-white/5 text-[11px] font-mono">
+                <span class="text-stone-500 dark:text-stone-400">Desenvolvido em Archicad</span>
+                <a
+                  href={sheet.image}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  class="text-rose-600 dark:text-rose-400 hover:underline flex items-center gap-1"
+                >
+                  <span>Abrir original</span>
+                  <span>↗</span>
+                </a>
+              </div>
+            </div>
+
+          </div>
         ))}
       </div>
-    </div>
-
-    <!-- 7. Detalhamento Construtivo Executivo (O Diferencial de Maturidade) -->
-    {data.constructionDetails && data.constructionDetails.length > 0 && (
-      <DetailSection details={data.constructionDetails} />
-    )}
+    </section>
 
   </div>
 </ProjectLayout>
-

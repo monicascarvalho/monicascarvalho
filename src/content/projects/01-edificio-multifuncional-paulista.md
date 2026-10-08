@@ -1,0 +1,68 @@
+---
+title: "Edifício Multifuncional Av. Paulista"
+shortDescription: "Projeto de edifício de uso misto (comercial, corporativo e circulação pública) com modelagem e documentação integral em Archicad."
+category: "Edifícios Multifuncionais"
+featured: true
+order: 1
+year: "2025"
+institution: "Universidade Paulista (UNIP)"
+discipline: "Projeto para Edifícios Multifuncionais Complexos"
+location: "Av. Paulista, São Paulo - SP"
+builtArea: "Sob consulta"
+softwares:
+  - "Archicad (BIM)"
+  - "AutoCAD"
+  - "Canva"
+authorRole: "Autora (Projeto Acadêmico Individual)"
+heroImage: "/images/projects/01-edificio-multifunctional-paulista/prancha-1.png"
+heroImageAlt: "Implantação e planta do Edifício Multifuncional Av. Paulista"
+pdfDownloadUrl: "/docs/projetos/projeto-multifuncional-av-paulista.pdf"
+driveUrl: "https://drive.google.com"
+sheets:
+  - title: "Folha 01 - Implantação e Térreo Comercial"
+    sheetNumber: "Folha 01"
+    scale: "1:250"
+    image: "/images/projects/01-edificio-multifunctional-paulista/prancha-1.png"
+    description: "Implantação geral, acessos públicos, galerias comerciais, escadas de emergência e integração com escultura urbana."
+  - title: "Folha 02 - Pavimento Tipo e Circulações Verticais"
+    sheetNumber: "Folha 02"
+    scale: "1:200"
+    image: "/images/projects/01-edificio-multifunctional-paulista/prancha-2.png"
+    description: "Distribuição das lâminas de escritórios, baterias de elevadores e shafts técnicos de instalações."
+  - title: "Folha 03 - Plantas dos Pavimentos Superiores"
+    sheetNumber: "Folha 03"
+    scale: "1:200"
+    image: "/images/projects/01-edificio-multifunctional-paulista/prancha-3.png"
+    description: "Modulação estrutural, caixilharia de fachada e sanitários coletivos e acessíveis (NBR 9050)."
+  - title: "Folha 04 - Corte Longitudinal Geral"
+    sheetNumber: "Folha 04"
+    scale: "1:200"
+    image: "/images/projects/01-edificio-multifunctional-paulista/prancha-4.png"
+    description: "Corte técnico esquemático com indicação de pés-direitos, lajes e relação entre subsolos, térreo e torre."
+  - title: "Folha 05 - Corte Transversal"
+    sheetNumber: "Folha 05"
+    scale: "1:200"
+    image: "/images/projects/01-edificio-multifunctional-paulista/prancha-5.png"
+    description: "Corte demonstrando circulação vertical, shafts de incêndio, elétrica e hidráulica."
+  - title: "Folha 06 - Elevações e Fachadas"
+    sheetNumber: "Folha 06"
+    scale: "1:200"
+    image: "/images/projects/01-edificio-multifunctional-paulista/prancha-6.png"
+    description: "Fachadas com estudo de ritmo visual, esquadrias e proteção solar para o clima paulistano."
+  - title: "Folha 07 - Detalhamento e Shafts de Instalações"
+    sheetNumber: "Folha 07"
+    scale: "1:100 / 1:50"
+    image: "/images/projects/01-edificio-multifunctional-paulista/prancha-7.png"
+    description: "Compatibilização de prumadas e rotas de fuga contra incêndio."
+  - title: "Folha 08 - Cobertura e Reservatórios"
+    sheetNumber: "Folha 08"
+    scale: "1:250"
+    image: "/images/projects/01-edificio-multifunctional-paulista/prancha-8.png"
+    description: "Planta de cobertura com platibandas, barrilete, casa de máquinas de elevadores e captação pluvial."
+---
+
+### Conceito e Partido Arquitetônico
+
+O projeto propõe um **edifício de uso misto** implantado em lote estratégico da Avenida Paulista, articulando dinamismo comercial no nível do pedestre com a verticalidade funcional de pavimentos corporativos.
+
+A modelagem tridimensional e a documentação técnica foram desenvolvidas no **Archicad**, garantindo a precisão das peças gráficas e a compatibilização entre os núcleos de circulação vertical, shafts de prumadas (elétrica, hidráulica, dados e combate a incêndio) e exigências de acessibilidade (**NBR 9050**).
