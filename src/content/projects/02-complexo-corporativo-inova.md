@@ -57,3 +57,4 @@ No pavimento térreo, uma generosa área de fruição pública conecta duas vias
 
 1. **Rotas de Fuga e Segurança Contra Incêndio:** Dimensionamento de duas escadas estanques pressurizadas com antecâmaras, portas corta-fogo P-90 e larguras de saída calculadas para a lotação máxima de 120 pessoas por pavimento conforme as Instruções Técnicas do Corpo de Bombeiros.
 2. **Fachada Cortina Ventilada:** Modelada no ArchiCAD através da ferramenta Curtain Wall com painéis customizados, minimizando a carga térmica incidente nas fachadas poente através de vidros de controle solar com fator solar FS < 0.38.
+

@@ -60,3 +60,4 @@ Todo o processo projetual foi estruturado em ambiente BIM desde os primeiros est
 1. **Definição de Composições Paramétricas:** As paredes externas foram modeladas com bloco cerâmico termoacústico de 19cm, câmara de ar de 3cm e revestimento argamassado com acabamento em pintura mineral hidrorrepelente, assegurando o cumprimento da **NBR 15575**.
 2. **Coordenação com Vãos e Esquadrias:** Cada abertura foi parametrizada com peitoris, pingadeiras metálicas e caixilhos com vidro duplo laminado. A tabela de esquadrias foi vinculada dinamicamente à planta de prefeitura, eliminando qualquer discrepância entre cotas de desenho e especificações descritivas.
 3. **Extração de Quantitativos e Áreas:** As zonas do ArchiCAD permitiram o cálculo exato do Coeficiente de Aproveitamento (CA) e das frações ideais de terreno para fins de simulação de incorporação bancária.
+

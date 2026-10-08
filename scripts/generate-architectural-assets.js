@@ -374,3 +374,4 @@ projects.forEach(p => {
 });
 
 console.log('Todos os assets arquitetônicos vetoriais gerados com sucesso!');
+

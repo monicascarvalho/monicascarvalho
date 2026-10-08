@@ -17,3 +17,4 @@ export function initPhotoSwipe(gallerySelector: string = '.pswp-gallery-context'
   lightbox.init();
   return lightbox;
 }
+

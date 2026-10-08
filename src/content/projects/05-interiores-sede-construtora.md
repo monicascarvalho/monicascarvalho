@@ -56,3 +56,4 @@ A linguagem combina materiais nobres e atemporais: concreto aparente nos pilares
 
 1. **Balcão de Recepção Acessível:** Conforme a NBR 9050, o balcão possui trecho rebaixado com altura de 75cm e profundidade livre de 50cm para encaixe confortável de cadeira de rodas, integrando terminal de atendimento, leitor biométrico e calhas organizadoras de cabos.
 2. **Coordenação Luminotécnica:** Todo o forro de gesso acartonado foi projetado para abrigar perfis embutidos no-frame, assegurando 500 lux nos planos de trabalho conforme a norma NBR 5413 com temperatura de cor quente e uniforme (3000K).
+

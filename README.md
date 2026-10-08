@@ -102,3 +102,4 @@ Os arquivos prontos para deploy (SSG estático sem servidor necessário) estarã
    Coloque seus arquivos reais em [`public/docs/curriculo.pdf`](file:///opt/dcruz/portifolio/public/docs/curriculo.pdf) e [`public/docs/portfolio-resumido.pdf`](file:///opt/dcruz/portifolio/public/docs/portfolio-resumido.pdf).
 3. **Adicionar ou Modificar Projetos:**
    Crie ou edite arquivos `.md` na pasta [`src/content/projects/`](file:///opt/dcruz/portifolio/src/content/projects/). O schema Zod validará automaticamente os campos obrigatórios (área, softwares, ritos legais, escala das pranchas e detalhes construtivos).
+

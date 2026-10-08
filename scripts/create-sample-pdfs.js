@@ -54,3 +54,4 @@ startxref
 fs.writeFileSync(path.join(docsDir, 'curriculo.pdf'), generateMinimalPdf('Curriculo Vitae - Arquitetura e Urbanismo'));
 fs.writeFileSync(path.join(docsDir, 'portfolio-resumido.pdf'), generateMinimalPdf('Caderno de Portfolio Executivo'));
 console.log('PDFs gerados com sucesso em public/docs!');
+

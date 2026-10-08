@@ -51,3 +51,4 @@ constructionDetails:
 A Residência Pátio & Concreto foi pensada para o clima quente de Ribeirão Preto. A volumetria horizontal hermética para a rua se abre internamente para pátios privativos que criam microclimas de conforto térmico através da evapotranspiração da vegetação e da ventilação induzida.
 
 A materialidade é definida pelo concreto aparente com textura de ripas de pinus nas paredes portantes, combinado com piso de cimento queimado e esquadrias de alumínio preto com perfis de espessura mínima embutidos no piso e no forro de gesso.
+

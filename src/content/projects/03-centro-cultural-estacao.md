@@ -55,3 +55,4 @@ A materialidade adota uma honestidade brutalista contemporânea: concreto armado
 ## Rigor em Acessibilidade & Topografia
 
 A topografia natural apresentava um desnível de 6,5 metros entre o acesso superior e a cota do parque. A solução projetual converteu esse obstáculo em partido: uma sequência de rampas suaves com inclinação de 6%, patamares de descanso a cada 12 metros e corrimãos duplos normatizados, permitindo que qualquer visitante transite confortavelmente por todo o complexo sem depender exclusivamente de elevadores.
+
