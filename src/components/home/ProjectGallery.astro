@@ -1,0 +1,84 @@
+---
+import type { CollectionEntry } from 'astro:content';
+import ProjectCard from './ProjectCard.astro';
+
+interface Props {
+  projects: CollectionEntry<'projects'>[];
+}
+
+const { projects } = Astro.props;
+const categories = ['Todos', 'Residencial', 'Corporativo / Comercial', 'Equipamento Público', 'Interiores'];
+---
+
+<section id="projetos" class="py-20 md:py-28 relative scroll-mt-20">
+  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+    
+    <!-- Section Header & Filter Bar -->
+    <div class="flex flex-col md:flex-row md:items-end justify-between gap-8 mb-12">
+      <div class="space-y-3 max-w-xl">
+        <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full text-xs font-mono font-medium bg-blueprint-500/10 border border-blueprint-400/30 text-blueprint-400">
+          <span class="w-1.5 h-1.5 rounded-full bg-blueprint-400"></span>
+          <span>Acervo Técnico Selecionado</span>
+        </div>
+        <h2 class="text-3xl sm:text-4xl font-display font-bold text-white dark:text-white light:text-gray-950">
+          Projetos em Destaque
+        </h2>
+        <p class="text-sm text-gray-300 dark:text-gray-300 light:text-gray-600">
+          Seleção de 5 projetos com narrativa do conceito ao detalhamento executivo, plantas cotadas e modelo BIM.
+        </p>
+      </div>
+
+      <!-- Filter Buttons -->
+      <div class="flex flex-wrap gap-2" id="gallery-filter-buttons">
+        {categories.map((cat, idx) => (
+          <button
+            type="button"
+            data-filter={cat}
+            class={`px-3.5 py-1.5 rounded-lg text-xs font-mono transition-all filter-btn ${idx === 0 ? 'bg-blueprint-500 text-obsidian-950 font-bold active' : 'border border-white/10 dark:border-white/10 light:border-black/10 bg-white/5 dark:bg-white/5 light:bg-black/5 text-gray-300 dark:text-gray-300 light:text-gray-700 hover:text-white dark:hover:text-white light:hover:text-black hover:border-blueprint-400/40'}`}
+          >
+            {cat}
+          </button>
+        ))}
+      </div>
+    </div>
+
+    <!-- Projects Grid -->
+    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 lg:gap-8" id="projects-grid">
+      {projects.map((project) => (
+        <ProjectCard project={project} />
+      ))}
+    </div>
+
+  </div>
+</section>
+
+<script is:inline>
+  (function () {
+    const filterButtons = document.querySelectorAll('#gallery-filter-buttons .filter-btn');
+    const projectItems = document.querySelectorAll('#projects-grid .project-item');
+
+    filterButtons.forEach(btn => {
+      btn.addEventListener('click', () => {
+        const filter = btn.getAttribute('data-filter');
+
+        // Update active button state
+        filterButtons.forEach(b => {
+          b.classList.remove('bg-blueprint-500', 'text-obsidian-950', 'font-bold', 'active');
+          b.classList.add('border', 'border-white/10', 'bg-white/5', 'text-gray-300');
+        });
+        btn.classList.add('bg-blueprint-500', 'text-obsidian-950', 'font-bold', 'active');
+        btn.classList.remove('border', 'border-white/10', 'bg-white/5', 'text-gray-300');
+
+        // Filter cards
+        projectItems.forEach(card => {
+          const category = card.getAttribute('data-category');
+          if (filter === 'Todos' || category === filter) {
+            card.style.display = 'flex';
+          } else {
+            card.style.display = 'none';
+          }
+        });
+      });
+    });
+  })();
+</script>

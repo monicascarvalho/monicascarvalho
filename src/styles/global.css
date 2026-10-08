@@ -1,0 +1,122 @@
+@import "photoswipe/dist/photoswipe.css";
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root {
+    --bg-primary: #0a0c10;
+    --bg-secondary: #101318;
+    --bg-surface: rgba(16, 19, 24, 0.72);
+    --bg-surface-elevated: rgba(23, 27, 34, 0.85);
+    --border-glass: rgba(255, 255, 255, 0.08);
+    --border-glass-hover: rgba(255, 255, 255, 0.18);
+    --border-specular: rgba(255, 255, 255, 0.12);
+    --text-primary: #f3f4f6;
+    --text-secondary: #9ca3af;
+    --text-muted: #6b7280;
+    --accent-blueprint: #38bdf8;
+    --accent-glow: rgba(56, 189, 248, 0.15);
+  }
+
+  html.light {
+    --bg-primary: #f8f9fa;
+    --bg-secondary: #ffffff;
+    --bg-surface: rgba(255, 255, 255, 0.78);
+    --bg-surface-elevated: rgba(255, 255, 255, 0.92);
+    --border-glass: rgba(0, 0, 0, 0.07);
+    --border-glass-hover: rgba(0, 0, 0, 0.15);
+    --border-specular: rgba(255, 255, 255, 0.9);
+    --text-primary: #0f172a;
+    --text-secondary: #475569;
+    --text-muted: #64748b;
+    --accent-blueprint: #0284c7;
+    --accent-glow: rgba(2, 132, 199, 0.12);
+  }
+
+  body {
+    background-color: var(--bg-primary);
+    color: var(--text-primary);
+    font-family: 'Plus Jakarta Sans', system-ui, sans-serif;
+    overflow-x: hidden;
+    transition: background-color 0.3s cubic-bezier(0.16, 1, 0.3, 1), color 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+  }
+
+  ::selection {
+    background-color: #38bdf8;
+    color: #0a0c10;
+  }
+}
+
+/* Glassmorphism utility components */
+@layer components {
+  .glass-card {
+    background-color: var(--bg-surface);
+    backdrop-filter: blur(16px);
+    -webkit-backdrop-filter: blur(16px);
+    border: 1px solid var(--border-glass);
+    box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
+    transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+  }
+
+  .glass-card:hover {
+    border-color: var(--border-glass-hover);
+    box-shadow: 0 10px 40px -10px var(--accent-glow);
+  }
+
+  .glass-nav {
+    background-color: var(--bg-surface);
+    backdrop-filter: blur(20px);
+    -webkit-backdrop-filter: blur(20px);
+    border-bottom: 1px solid var(--border-glass);
+  }
+
+  .glass-badge {
+    background-color: rgba(56, 189, 248, 0.08);
+    border: 1px solid rgba(56, 189, 248, 0.2);
+    color: var(--accent-blueprint);
+    backdrop-filter: blur(8px);
+  }
+
+  .glass-spec-item {
+    background: linear-gradient(135deg, rgba(255, 255, 255, 0.03) 0%, rgba(255, 255, 255, 0.01) 100%);
+    border: 1px solid var(--border-glass);
+  }
+
+  html.light .glass-spec-item {
+    background: linear-gradient(135deg, rgba(0, 0, 0, 0.02) 0%, rgba(0, 0, 0, 0.005) 100%);
+  }
+
+  .noise-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    background-image: url('/noise.svg');
+    background-repeat: repeat;
+    opacity: 0.035;
+    pointer-events: none;
+    z-index: 9999;
+  }
+
+  html.light .noise-overlay {
+    opacity: 0.025;
+  }
+}
+
+/* Custom discreet scrollbar */
+::-webkit-scrollbar {
+  width: 6px;
+  height: 6px;
+}
+::-webkit-scrollbar-track {
+  background: var(--bg-primary);
+}
+::-webkit-scrollbar-thumb {
+  background: var(--border-glass-hover);
+  border-radius: 9999px;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: var(--accent-blueprint);
+}

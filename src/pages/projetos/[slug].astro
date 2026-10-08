@@ -1,0 +1,177 @@
+---
+import { getCollection } from 'astro:content';
+import ProjectLayout from '@/layouts/ProjectLayout.astro';
+import SpecTable from '@/components/project/SpecTable.astro';
+import TechnicalSheet from '@/components/project/TechnicalSheet.astro';
+import ProcessCarousel from '@/components/project/ProcessCarousel.astro';
+import DetailSection from '@/components/project/DetailSection.astro';
+
+export async function getStaticPaths() {
+  const allProjects = await getCollection('projects');
+  const sorted = allProjects.sort((a, b) => a.data.order - b.data.order);
+
+  return sorted.map((project, index) => ({
+    params: { slug: project.slug },
+    props: {
+      project,
+      prevProject: index > 0 ? sorted[index - 1] : undefined,
+      nextProject: index < sorted.length - 1 ? sorted[index + 1] : undefined,
+    },
+  }));
+}
+
+const { project, prevProject, nextProject } = Astro.props;
+const { data } = project;
+const { Content } = await project.render();
+
+// Generate carousel slides from project images
+const carouselSlides = data.processGallery && data.processGallery.length > 0
+  ? data.processGallery
+  : [
+      { image: data.heroImage, caption: `Estudo Volumétrico Principal: ${data.title}` },
+      { image: data.technicalDrawings[0]?.image || data.heroImage, caption: `Coordenação de Planta e Eixos Estruturais em ArchiCAD` },
+      { image: data.technicalDrawings[1]?.image || data.heroImage, caption: `Corte Esquemático e Estudo de Alturas e Níveis` },
+    ];
+---
+
+<ProjectLayout project={project} prevProject={prevProject} nextProject={nextProject}>
+  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 space-y-16">
+    
+    <!-- 1. Project Title & Header Block -->
+    <div class="space-y-4 max-w-4xl">
+      <div class="flex flex-wrap items-center gap-2">
+        <span class="px-3 py-1 rounded-full text-xs font-mono font-medium glass-badge">
+          {data.category}
+        </span>
+        <span class="px-3 py-1 rounded-full text-xs font-mono bg-white/5 border border-white/10 text-gray-300">
+          {data.location}
+        </span>
+        <span class="px-3 py-1 rounded-full text-xs font-mono bg-white/5 border border-white/10 text-blueprint-400 font-semibold">
+          Área: {data.builtArea}
+        </span>
+      </div>
+
+      <h1 class="text-3xl sm:text-4xl md:text-5xl font-display font-bold text-white dark:text-white light:text-gray-950 tracking-tight leading-tight">
+        {data.title}
+      </h1>
+
+      <p class="text-base sm:text-lg text-gray-300 dark:text-gray-300 light:text-gray-600 leading-relaxed font-sans">
+        {data.shortDescription}
+      </p>
+    </div>
+
+    <!-- 2. Hero Project Image with Zoom Preview -->
+    <div class="rounded-2xl overflow-hidden glass-card aspect-[16/9] bg-obsidian-950 relative group">
+      <a
+        href={data.heroImage}
+        data-pswp-width="1600"
+        data-pswp-height="1000"
+        class="pswp-gallery-item block w-full h-full cursor-zoom-in"
+        title="Clique para ampliar render volumétrico"
+      >
+        <img
+          src={data.heroImage}
+          alt={data.heroImageAlt}
+          class="w-full h-full object-cover group-hover:scale-102 transition-transform duration-500"
+        />
+        <div class="absolute bottom-4 right-4 px-3 py-1.5 rounded-lg bg-obsidian-950/80 border border-white/15 text-xs font-mono text-gray-300 backdrop-blur-md flex items-center gap-1.5">
+          <svg class="w-3.5 h-3.5 text-blueprint-400" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0zM10 7v3m0 0v3m0-3h3m-3 0H7"/>
+          </svg>
+          <span>Ampliar Perspectiva</span>
+        </div>
+      </a>
+    </div>
+
+    <!-- 3. Ficha Técnica Rápida & Parâmetros Executivos -->
+    <SpecTable project={project} />
+
+    <!-- 4. Conceito, Partido & Memorial Arquitetônico (Markdown Content) -->
+    <div class="grid grid-cols-1 lg:grid-cols-12 gap-12">
+      <div class="lg:col-span-8 space-y-6">
+        <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full text-xs font-mono font-medium bg-blueprint-500/10 border border-blueprint-400/30 text-blueprint-400">
+          <span class="w-1.5 h-1.5 rounded-full bg-blueprint-400"></span>
+          <span>Memorial Descritivo &amp; Partido</span>
+        </div>
+        
+        <div class="prose prose-invert max-w-none text-gray-300 dark:text-gray-300 light:text-gray-700 space-y-4 leading-relaxed font-sans text-sm sm:text-base">
+          <Content />
+        </div>
+      </div>
+
+      <!-- Lateral: Resumo de Softwares e Entrega -->
+      <div class="lg:col-span-4 space-y-6">
+        <div class="glass-card p-6 rounded-2xl space-y-4">
+          <h4 class="font-mono text-xs font-semibold text-blueprint-400 uppercase tracking-wider">
+            Resumo de Softwares &amp; Formato
+          </h4>
+          <ul class="space-y-3 text-xs font-mono">
+            <li class="flex items-center justify-between pb-2 border-b border-white/5">
+              <span class="text-gray-400">Modelagem BIM</span>
+              <span class="font-semibold text-white">ArchiCAD 27</span>
+            </li>
+            <li class="flex items-center justify-between pb-2 border-b border-white/5">
+              <span class="text-gray-400">Padrão de Troca</span>
+              <span class="font-semibold text-blueprint-400">OpenBIM (IFC 2x3)</span>
+            </li>
+            <li class="flex items-center justify-between pb-2 border-b border-white/5">
+              <span class="text-gray-400">Pranchas Executivas</span>
+              <span class="font-semibold text-white">ABNT NBR 6492</span>
+            </li>
+            <li class="flex items-center justify-between">
+              <span class="text-gray-400">Renderização</span>
+              <span class="font-semibold text-white">Enscape 3D</span>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </div>
+
+    <!-- 5. Carrossel de Evolução do Processo & Croquis -->
+    <div class="space-y-4">
+      <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full text-xs font-mono font-medium bg-blueprint-500/10 border border-blueprint-400/30 text-blueprint-400">
+        <span class="w-1.5 h-1.5 rounded-full bg-blueprint-400"></span>
+        <span>Evolução do Processo Projetual</span>
+      </div>
+      <h3 class="text-2xl font-display font-bold text-white dark:text-white light:text-gray-900">
+        Croquis, Volumetria &amp; Diagramas Conceituais
+      </h3>
+      <ProcessCarousel slides={carouselSlides} />
+    </div>
+
+    <!-- 6. Peças Técnicas com Lightbox e Zoom Profundo PhotoSwipe -->
+    <div class="space-y-6">
+      <div class="space-y-1">
+        <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full text-xs font-mono font-medium bg-blueprint-500/10 border border-blueprint-400/30 text-blueprint-400">
+          <span class="w-1.5 h-1.5 rounded-full bg-blueprint-400"></span>
+          <span>Peças Gráficas Normatizadas</span>
+        </div>
+        <h3 class="text-2xl font-display font-bold text-white dark:text-white light:text-gray-900">
+          Plantas Baixas Cotadas, Cortes &amp; Pranchas Técnicas
+        </h3>
+        <p class="text-xs sm:text-sm text-gray-400 dark:text-gray-400 light:text-gray-600">
+          Clique nas pranchas abaixo para abrir o visualizador com zoom de alta resolução (PhotoSwipe), permitindo inspecionar cotas, eixos e espessuras de traço.
+        </p>
+      </div>
+
+      <div class="grid grid-cols-1 lg:grid-cols-2 gap-8">
+        {data.technicalDrawings.map((drawing) => (
+          <TechnicalSheet
+            title={drawing.title}
+            sheetType={drawing.sheetType}
+            scale={drawing.scale}
+            image={drawing.image}
+            highResImage={drawing.highResImage}
+            description={drawing.description}
+          />
+        ))}
+      </div>
+    </div>
+
+    <!-- 7. Detalhamento Construtivo Executivo (O Diferencial de Maturidade) -->
+    {data.constructionDetails && data.constructionDetails.length > 0 && (
+      <DetailSection details={data.constructionDetails} />
+    )}
+
+  </div>
+</ProjectLayout>

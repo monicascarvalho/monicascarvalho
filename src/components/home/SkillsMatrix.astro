@@ -1,0 +1,60 @@
+---
+import { portfolioConfig } from '@/config/portfolio.config';
+const { skillsCategories } = portfolioConfig;
+---
+
+<section id="habilidades" class="py-20 md:py-28 relative scroll-mt-20">
+  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+    
+    <!-- Section Header -->
+    <div class="max-w-3xl space-y-4 mb-16">
+      <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full text-xs font-mono font-medium bg-blueprint-500/10 border border-blueprint-400/30 text-blueprint-400">
+        <span class="w-1.5 h-1.5 rounded-full bg-blueprint-400"></span>
+        <span>Domínio Prático &amp; Ferramentas</span>
+      </div>
+      <h2 class="text-3xl sm:text-4xl font-display font-bold text-white dark:text-white light:text-gray-950">
+        Matriz de Habilidades Técnicas
+      </h2>
+      <p class="text-sm sm:text-base text-gray-300 dark:text-gray-300 light:text-gray-600">
+        Estruturada por proficiência prática e aplicação real no fluxo de projeto executivo e compatibilização, substituindo métricas subjetivas por entregáveis concretos.
+      </p>
+    </div>
+
+    <!-- Skills Grid by Categories -->
+    <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+      {skillsCategories.map((category) => (
+        <div class="glass-card p-6 sm:p-8 rounded-2xl flex flex-col justify-between">
+          <div class="space-y-6">
+            <!-- Category Title -->
+            <div class="flex items-center justify-between pb-4 border-b border-white/10 dark:border-white/10 light:border-black/5">
+              <h3 class="font-display font-bold text-lg text-white dark:text-white light:text-gray-900">
+                {category.name}
+              </h3>
+              <span class="font-mono text-xs text-blueprint-400">Fluxo Profissional</span>
+            </div>
+
+            <!-- Tools List -->
+            <div class="space-y-4">
+              {category.tools.map((tool) => (
+                <div class="p-3.5 rounded-xl glass-spec-item hover:border-blueprint-400/40 transition-colors">
+                  <div class="flex items-center justify-between mb-1.5">
+                    <span class={`font-semibold text-sm ${tool.highlight ? 'text-blueprint-400' : 'text-white dark:text-white light:text-gray-900'}`}>
+                      {tool.name}
+                    </span>
+                    <span class={`text-[10px] font-mono px-2 py-0.5 rounded-full ${tool.level === 'Avançado' ? 'bg-blueprint-500/20 text-blueprint-400 border border-blueprint-400/30 font-bold' : tool.level === 'Proficiente' ? 'bg-white/10 text-gray-300 border border-white/15' : 'bg-white/5 text-gray-400 border border-white/10'}`}>
+                      {tool.level}
+                    </span>
+                  </div>
+                  <p class="text-xs text-gray-400 dark:text-gray-400 light:text-gray-600 leading-relaxed">
+                    {tool.description}
+                  </p>
+                </div>
+              ))}
+            </div>
+          </div>
+        </div>
+      ))}
+    </div>
+
+  </div>
+</section>

@@ -1,0 +1,85 @@
+---
+import BaseLayout from './BaseLayout.astro';
+import type { CollectionEntry } from 'astro:content';
+
+interface Props {
+  project: CollectionEntry<'projects'>;
+  prevProject?: CollectionEntry<'projects'>;
+  nextProject?: CollectionEntry<'projects'>;
+}
+
+const { project, prevProject, nextProject } = Astro.props;
+const { data } = project;
+---
+
+<BaseLayout
+  title={`${data.title} | Portfólio de Arquitetura`}
+  description={data.shortDescription}
+  image={data.heroImage}
+  isHome={false}
+>
+  <div class="pswp-gallery-context">
+    <!-- Breadcrumb & Top Bar -->
+    <div class="border-b border-white/10 dark:border-white/10 light:border-black/5 bg-obsidian-900/40 backdrop-blur-sm">
+      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-4 flex items-center justify-between text-xs font-mono">
+        <div class="flex items-center gap-2 text-gray-400">
+          <a href="/" class="hover:text-blueprint-400 transition-colors">Início</a>
+          <span>/</span>
+          <a href="/projetos" class="hover:text-blueprint-400 transition-colors">Projetos</a>
+          <span>/</span>
+          <span class="text-blueprint-400 font-semibold truncate max-w-[200px] sm:max-w-none">{data.title}</span>
+        </div>
+
+        <a
+          href="/#projetos"
+          class="inline-flex items-center gap-1.5 text-gray-300 hover:text-blueprint-400 transition-colors"
+        >
+          <span>← Voltar à Galeria</span>
+        </a>
+      </div>
+    </div>
+
+    <!-- Main Project Slot -->
+    <article class="py-12 md:py-16">
+      <slot />
+    </article>
+
+    <!-- Bottom Project Navigation (Prev / Next) -->
+    <div class="border-t border-white/10 dark:border-white/10 light:border-black/5 py-12 bg-obsidian-950/50">
+      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div class="grid grid-cols-1 sm:grid-cols-2 gap-6">
+          {prevProject ? (
+            <a
+              href={`/projetos/${prevProject.slug}`}
+              class="glass-card p-6 rounded-2xl group flex flex-col justify-between"
+            >
+              <span class="font-mono text-xs text-gray-400 mb-2">← Projeto Anterior</span>
+              <h4 class="font-display font-bold text-lg text-white group-hover:text-blueprint-400 transition-colors">
+                {prevProject.data.title}
+              </h4>
+              <span class="font-mono text-xs text-blueprint-400 mt-2">{prevProject.data.category}</span>
+            </a>
+          ) : <div />}
+
+          {nextProject ? (
+            <a
+              href={`/projetos/${nextProject.slug}`}
+              class="glass-card p-6 rounded-2xl group flex flex-col justify-between text-right"
+            >
+              <span class="font-mono text-xs text-gray-400 mb-2">Próximo Projeto →</span>
+              <h4 class="font-display font-bold text-lg text-white group-hover:text-blueprint-400 transition-colors">
+                {nextProject.data.title}
+              </h4>
+              <span class="font-mono text-xs text-blueprint-400 mt-2">{nextProject.data.category}</span>
+            </a>
+          ) : <div />}
+        </div>
+      </div>
+    </div>
+  </div>
+</BaseLayout>
+
+<script>
+  import { initPhotoSwipe } from '@/scripts/lightbox-init';
+  initPhotoSwipe('.pswp-gallery-context');
+</script>

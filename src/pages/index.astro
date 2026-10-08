@@ -1,0 +1,34 @@
+---
+import BaseLayout from '@/layouts/BaseLayout.astro';
+import HeroSection from '@/components/home/HeroSection.astro';
+import BimSection from '@/components/home/BimSection.astro';
+import ProjectGallery from '@/components/home/ProjectGallery.astro';
+import SkillsMatrix from '@/components/home/SkillsMatrix.astro';
+import AboutSection from '@/components/home/AboutSection.astro';
+import ContactSection from '@/components/home/ContactSection.astro';
+import { getCollection } from 'astro:content';
+
+const projects = await getCollection('projects');
+// Sort by order ascending
+const sortedProjects = projects.sort((a, b) => a.data.order - b.data.order);
+---
+
+<BaseLayout>
+  <!-- 1. Hero / Apresentação Imediata (Regra dos 3 segundos) -->
+  <HeroSection />
+
+  <!-- 2. Prática Construtiva & Metodologia BIM (Destaque ArchiCAD & Construtoras) -->
+  <BimSection />
+
+  <!-- 3. Galeria de Projetos em Destaque com Filtros -->
+  <ProjectGallery projects={sortedProjects} />
+
+  <!-- 4. Matriz de Habilidades e Ferramentas Técnicas -->
+  <SkillsMatrix />
+
+  <!-- 5. Sobre Mim & Trajetória Acadêmica -->
+  <AboutSection />
+
+  <!-- 6. Contato & Disponibilidade Imediata -->
+  <ContactSection />
+</BaseLayout>
