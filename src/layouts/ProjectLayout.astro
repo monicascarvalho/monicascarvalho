@@ -1,6 +1,7 @@
 ---
 import BaseLayout from './BaseLayout.astro';
 import type { CollectionEntry } from 'astro:content';
+import { withBase } from '@/utils/base';
 
 interface Props {
   project: CollectionEntry<'projects'>;
@@ -23,15 +24,15 @@ const { data } = project;
     <div class="border-b border-rose-100 dark:border-white/10 bg-rose-50/40 dark:bg-obsidian-900/40 backdrop-blur-sm">
       <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-3.5 flex items-center justify-between text-xs font-mono">
         <div class="flex items-center gap-2 text-gray-500 dark:text-gray-400">
-          <a href="/" class="hover:text-rose-600 dark:hover:text-rose-300 transition-colors">Início</a>
+          <a href={withBase('/')} class="hover:text-rose-600 dark:hover:text-rose-300 transition-colors">Início</a>
           <span>/</span>
-          <a href="/projetos" class="hover:text-rose-600 dark:hover:text-rose-300 transition-colors">Projetos</a>
+          <a href={withBase('/projetos')} class="hover:text-rose-600 dark:hover:text-rose-300 transition-colors">Projetos</a>
           <span>/</span>
           <span class="text-rose-600 dark:text-rose-400 font-semibold truncate max-w-[200px] sm:max-w-none">{data.title}</span>
         </div>
 
         <a
-          href="/#projetos"
+          href={withBase('/#projetos')}
           class="inline-flex items-center gap-1.5 text-gray-600 dark:text-gray-300 hover:text-rose-600 dark:hover:text-rose-300 transition-colors"
         >
           <span>← Voltar à Galeria</span>
@@ -50,7 +51,7 @@ const { data } = project;
         <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
           {prevProject ? (
             <a
-              href={`/projetos/${prevProject.slug}`}
+              href={withBase(`/projetos/${prevProject.slug}`)}
               class="glass-card p-5 rounded-xl group flex flex-col justify-between"
             >
               <span class="font-mono text-xs text-gray-500 dark:text-gray-400 mb-1">← Projeto Anterior</span>
@@ -63,7 +64,7 @@ const { data } = project;
 
           {nextProject ? (
             <a
-              href={`/projetos/${nextProject.slug}`}
+              href={withBase(`/projetos/${nextProject.slug}`)}
               class="glass-card p-5 rounded-xl group flex flex-col justify-between text-right"
             >
               <span class="font-mono text-xs text-gray-500 dark:text-gray-400 mb-1">Próximo Projeto →</span>

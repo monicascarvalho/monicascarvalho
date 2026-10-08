@@ -1,6 +1,7 @@
 ---
 import { getCollection } from 'astro:content';
 import ProjectLayout from '@/layouts/ProjectLayout.astro';
+import { withBase } from '@/utils/base';
 
 export async function getStaticPaths() {
   const allProjects = await getCollection('projects');
@@ -51,7 +52,7 @@ const { Content } = await project.render();
       <div class="flex flex-wrap items-center gap-3 pt-2">
         {data.pdfDownloadUrl && (
           <a
-            href={data.pdfDownloadUrl}
+            href={withBase(data.pdfDownloadUrl)}
             download
             class="inline-flex items-center gap-2 px-5 py-2.5 rounded-xl text-xs sm:text-sm font-mono font-semibold bg-rose-600 text-white hover:bg-rose-700 active:scale-[0.98] transition-all shadow-sm shadow-rose-600/20"
           >
@@ -163,7 +164,7 @@ const { Content } = await project.render();
 
         {data.pdfDownloadUrl && (
           <a
-            href={data.pdfDownloadUrl}
+            href={withBase(data.pdfDownloadUrl)}
             download
             class="inline-flex items-center gap-1.5 text-xs font-mono font-semibold text-rose-600 dark:text-rose-400 hover:underline"
           >
@@ -180,14 +181,14 @@ const { Content } = await project.render();
             <!-- Imagem Clicável com PhotoSwipe -->
             <div class="relative bg-stone-100 dark:bg-obsidian-950 overflow-hidden aspect-[1.414/1]">
               <a
-                href={sheet.image}
+                href={withBase(sheet.image)}
                 data-pswp-width="3041"
                 data-pswp-height="2150"
                 class="pswp-gallery-item block w-full h-full cursor-zoom-in"
                 title={`${sheet.title} - Clique para ampliar com zoom`}
               >
                 <img
-                  src={sheet.image}
+                  src={withBase(sheet.image)}
                   alt={sheet.title}
                   loading={index < 2 ? "eager" : "lazy"}
                   class="w-full h-full object-contain p-2 group-hover:scale-101 transition-transform duration-300"
@@ -233,7 +234,7 @@ const { Content } = await project.render();
               <div class="pt-2 flex items-center justify-between border-t border-stone-100 dark:border-white/5 text-[11px] font-mono">
                 <span class="text-stone-500 dark:text-stone-400">Desenvolvido em Archicad</span>
                 <a
-                  href={sheet.image}
+                  href={withBase(sheet.image)}
                   target="_blank"
                   rel="noopener noreferrer"
                   class="text-rose-600 dark:text-rose-400 hover:underline flex items-center gap-1"

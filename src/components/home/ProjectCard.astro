@@ -1,5 +1,6 @@
 ---
 import type { CollectionEntry } from 'astro:content';
+import { withBase } from '@/utils/base';
 
 interface Props {
   project: CollectionEntry<'projects'>;
@@ -7,6 +8,7 @@ interface Props {
 
 const { project } = Astro.props;
 const { data, slug } = project;
+const projectUrl = withBase(`/projetos/${slug}`);
 ---
 
 <article 
@@ -15,9 +17,9 @@ const { data, slug } = project;
 >
   <div>
     <!-- Project Cover Image with Badge -->
-    <a href={`/projetos/${slug}`} class="block relative aspect-[16/10] overflow-hidden bg-stone-100 dark:bg-obsidian-900 border-b border-rose-100 dark:border-white/10">
+    <a href={projectUrl} class="block relative aspect-[16/10] overflow-hidden bg-stone-100 dark:bg-obsidian-900 border-b border-rose-100 dark:border-white/10">
       <img
-        src={data.heroImage}
+        src={withBase(data.heroImage)}
         alt={data.heroImageAlt}
         class="w-full h-full object-cover object-center group-hover:scale-105 transition-transform duration-500"
         loading="lazy"
@@ -48,7 +50,7 @@ const { data, slug } = project;
         </div>
 
         <h3 class="font-display font-bold text-xl text-gray-900 dark:text-white group-hover:text-rose-600 dark:group-hover:text-rose-300 transition-colors">
-          <a href={`/projetos/${slug}`}>
+          <a href={projectUrl}>
             {data.title}
           </a>
         </h3>
@@ -73,7 +75,7 @@ const { data, slug } = project;
   <!-- Bottom Action Link -->
   <div class="p-6 pt-0 border-t border-rose-100/60 dark:border-white/5 mt-4">
     <a
-      href={`/projetos/${slug}`}
+      href={projectUrl}
       class="inline-flex items-center justify-between w-full pt-4 font-mono text-xs font-semibold text-rose-600 dark:text-rose-400 hover:text-rose-700 dark:hover:text-rose-300 transition-colors group/link"
     >
       <span>Ver Pranchas &amp; Memorial</span>

@@ -1,5 +1,6 @@
 ---
 import { portfolioConfig } from '@/config/portfolio.config';
+import { withBase } from '@/utils/base';
 const currentYear = new Date().getFullYear();
 ---
 
@@ -33,7 +34,7 @@ const currentYear = new Date().getFullYear();
         </h4>
         <ul class="space-y-2 text-xs font-mono">
           <li>
-            <a href={portfolioConfig.downloads.cvUrl} download class="inline-flex items-center gap-2 text-gray-600 dark:text-gray-300 hover:text-rose-600 dark:hover:text-rose-300 transition-colors">
+            <a href={withBase(portfolioConfig.downloads.cvUrl)} download class="inline-flex items-center gap-2 text-gray-600 dark:text-gray-300 hover:text-rose-600 dark:hover:text-rose-300 transition-colors">
               <svg class="w-4 h-4 text-rose-600 dark:text-rose-400" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 10v6m0 0l-3-3m3 3l3-3m2 8H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"/>
               </svg>
@@ -41,7 +42,7 @@ const currentYear = new Date().getFullYear();
             </a>
           </li>
           <li>
-            <a href="/projetos" class="inline-flex items-center gap-2 text-gray-600 dark:text-gray-300 hover:text-rose-600 dark:hover:text-rose-300 transition-colors">
+            <a href={withBase('/projetos')} class="inline-flex items-center gap-2 text-gray-600 dark:text-gray-300 hover:text-rose-600 dark:hover:text-rose-300 transition-colors">
               <span>Ver Todos os Projetos →</span>
             </a>
           </li>

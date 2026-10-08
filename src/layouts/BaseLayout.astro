@@ -4,6 +4,7 @@ import Header from '@/components/common/Header.astro';
 import Footer from '@/components/common/Footer.astro';
 import NoiseOverlay from '@/components/common/NoiseOverlay.astro';
 import { portfolioConfig } from '@/config/portfolio.config';
+import { withBase } from '@/utils/base';
 
 interface Props {
   title?: string;
@@ -27,7 +28,7 @@ const canonicalURL = new URL(Astro.url.pathname, Astro.site || 'http://localhost
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <link rel="icon" type="image/svg+xml" href={withBase('/favicon.svg')} />
     <meta name="generator" content={Astro.generator} />
 
     <!-- SEO Primary Tags -->
@@ -41,7 +42,7 @@ const canonicalURL = new URL(Astro.url.pathname, Astro.site || 'http://localhost
     <meta property="og:url" content={canonicalURL} />
     <meta property="og:title" content={title} />
     <meta property="og:description" content={description} />
-    <meta property="og:image" content={image} />
+    <meta property="og:image" content={withBase(image)} />
 
     <!-- Preconnect Google Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com" />

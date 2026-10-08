@@ -1,5 +1,6 @@
 ---
 import { portfolioConfig } from '@/config/portfolio.config';
+import { withBase } from '@/utils/base';
 ---
 
 <section class="relative pt-12 pb-16 md:pt-20 md:pb-24 overflow-hidden">
@@ -47,7 +48,7 @@ import { portfolioConfig } from '@/config/portfolio.config';
       <div class="pt-3 flex flex-wrap items-center gap-3 sm:gap-4">
         <!-- Baixar CV -->
         <a
-          href={portfolioConfig.downloads.cvUrl}
+          href={withBase(portfolioConfig.downloads.cvUrl)}
           download="Curriculo-Monica-Carvalho.pdf"
           target="_blank"
           rel="noopener noreferrer"

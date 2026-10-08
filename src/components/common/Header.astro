@@ -1,5 +1,6 @@
 ---
 import { portfolioConfig } from '@/config/portfolio.config';
+import { withBase } from '@/utils/base';
 import ThemeToggle from './ThemeToggle.astro';
 
 interface Props {
@@ -7,13 +8,13 @@ interface Props {
 }
 
 const { isHome = true } = Astro.props;
-const getLink = (hash: string) => isHome ? hash : `/${hash}`;
+const getLink = (hash: string) => isHome ? hash : withBase(`/${hash}`);
 ---
 
 <header class="sticky top-0 z-50 w-full glass-nav backdrop-blur-glass transition-all duration-300">
   <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-20 flex items-center justify-between">
     <!-- Brand / Monograma Arquitetônico -->
-    <a href="/" class="group flex items-center gap-3 focus:outline-none">
+    <a href={withBase('/')} class="group flex items-center gap-3 focus:outline-none">
       <div class="w-10 h-10 rounded-lg border border-rose-200 dark:border-rose-900/60 bg-rose-50/60 dark:bg-rose-950/30 flex items-center justify-center font-mono font-bold text-sm tracking-wider text-rose-600 dark:text-rose-400 group-hover:border-rose-400 transition-colors shadow-sm">
         MC
       </div>
@@ -51,7 +52,7 @@ const getLink = (hash: string) => isHome ? hash : `/${hash}`;
     <div class="flex items-center gap-3">
       <!-- CV PDF Button -->
       <a
-        href={portfolioConfig.downloads.cvUrl}
+        href={withBase(portfolioConfig.downloads.cvUrl)}
         download="Curriculo-Monica-Carvalho.pdf"
         target="_blank"
         rel="noopener noreferrer"
@@ -88,7 +89,7 @@ const getLink = (hash: string) => isHome ? hash : `/${hash}`;
     <a href={getLink('#sobre')} class="block py-2 text-sm text-gray-800 dark:text-gray-200 hover:text-rose-600">Sobre</a>
     <a href={getLink('#contato')} class="block py-2 text-sm text-gray-800 dark:text-gray-200 hover:text-rose-600">Contato</a>
     <div class="pt-2">
-      <a href={portfolioConfig.downloads.cvUrl} download class="flex items-center justify-center gap-2 py-2 px-3 rounded-lg text-xs font-mono font-medium border border-rose-200 dark:border-rose-900 bg-rose-50 dark:bg-rose-950/40 text-rose-700 dark:text-rose-300">
+      <a href={withBase(portfolioConfig.downloads.cvUrl)} download class="flex items-center justify-center gap-2 py-2 px-3 rounded-lg text-xs font-mono font-medium border border-rose-200 dark:border-rose-900 bg-rose-50 dark:bg-rose-950/40 text-rose-700 dark:text-rose-300">
         Baixar CV (PDF)
       </a>
     </div>
