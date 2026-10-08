@@ -50,3 +50,4 @@ sheets:
 Localizado em um ponto nevrálgico de Santo Amaro (SP), entre a Avenida Adolfo Pinheiros, a Rua Dr. Antônio Bento e a Rua Conde de Itu, o projeto articula a inserção de um equipamento cultural (**Midiateca**) à requalificação do passeio público.
 
 O partido prioriza a **acessibilidade universal (NBR 9050)** como elemento estruturador do desenho: as declividades do terreno foram resolvidas através de um sistema integrado de rampas suaves com inclinações calculadas (5,23% a 8,42%), convidando a população do entorno a transitar livremente entre a praça de acolhimento e os espaços de pesquisa multimídia.
+

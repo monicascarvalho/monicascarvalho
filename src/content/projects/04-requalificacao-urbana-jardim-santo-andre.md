@@ -46,3 +46,4 @@ sheets:
 A proposta de **Intervenção Urbanística e Arquitetônica no Jardim Santo André (CDHU)** atua na área compreendida entre a Rua dos Missionários e a Rua Toledana, ocupada irregularmente às margens de um curso d'água por famílias em vulnerabilidade.
 
 O principal objetivo é o desenvolvimento de **Habitação de Interesse Social (HIS)** que assegure moradia digna e salubridade, articulada à recuperação da **Área de Preservação Permanente (APP)** do córrego. As diretrizes do projeto combinam o respeito à topografia original com drenagem urbana sustentável, análise morfológica e estudos bioclimáticos de orientação solar e ventilação dominante.
+

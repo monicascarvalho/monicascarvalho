@@ -75,3 +75,4 @@ sheets:
 O projeto do **Centro de Educação Unificado (CEU)** visa oferecer um equipamento público integrador para a comunidade, abrigando ensino formal, atividades culturais, convivência comunitária e esportes.
 
 A volumetria foi concebida no **Archicad** a partir da modelagem tridimensional do terreno natural, minimizando cortes e aterros expressivos. As circulações e desníveis foram rigorosamente solucionados com rampas acessíveis e escadas confortáveis em consonância com a **NBR 9050**.
+

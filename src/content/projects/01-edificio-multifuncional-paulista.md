@@ -66,3 +66,4 @@ sheets:
 O projeto propõe um **edifício de uso misto** implantado em lote estratégico da Avenida Paulista, articulando dinamismo comercial no nível do pedestre com a verticalidade funcional de pavimentos corporativos.
 
 A modelagem tridimensional e a documentação técnica foram desenvolvidas no **Archicad**, garantindo a precisão das peças gráficas e a compatibilização entre os núcleos de circulação vertical, shafts de prumadas (elétrica, hidráulica, dados e combate a incêndio) e exigências de acessibilidade (**NBR 9050**).
+
