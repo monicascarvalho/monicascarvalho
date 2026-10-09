@@ -2,6 +2,7 @@
 import { portfolioConfig } from '@/config/portfolio.config';
 import { withBase } from '@/utils/base';
 import ThemeToggle from './ThemeToggle.astro';
+import ArchitecturalLogo from './ArchitecturalLogo.astro';
 
 interface Props {
   isHome?: boolean;
@@ -14,10 +15,8 @@ const getLink = (hash: string) => isHome ? hash : withBase(`/${hash}`);
 <header class="sticky top-0 z-50 w-full glass-nav backdrop-blur-glass transition-all duration-300">
   <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-20 flex items-center justify-between">
     <!-- Brand / Monograma Arquitetônico -->
-    <a href={withBase('/')} class="group flex items-center gap-3 focus:outline-none">
-      <div class="w-10 h-10 rounded-lg border border-rose-200 dark:border-rose-900/60 bg-rose-50/60 dark:bg-rose-950/30 flex items-center justify-center font-mono font-bold text-sm tracking-wider text-rose-600 dark:text-rose-400 group-hover:border-rose-400 transition-colors shadow-sm">
-        MC
-      </div>
+    <a href={withBase('/')} class="group flex items-center gap-3 focus:outline-none" aria-label={`Página inicial - ${portfolioConfig.personal.name}`}>
+      <ArchitecturalLogo size="md" />
       <div class="flex flex-col">
         <span class="font-display font-semibold tracking-tight text-base sm:text-lg text-gray-900 dark:text-white group-hover:text-rose-600 dark:group-hover:text-rose-300 transition-colors">
           {portfolioConfig.personal.name}

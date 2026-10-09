@@ -68,12 +68,12 @@ import { withBase } from '@/utils/base';
           <span>Explorar Projetos Acadêmicos ↓</span>
         </a>
 
-        <!-- WhatsApp -->
+        <!-- WhatsApp Protegido -->
         <a
-          href={portfolioConfig.contact.whatsappUrl}
-          target="_blank"
-          rel="noopener noreferrer"
-          class="inline-flex items-center gap-2 px-4 py-3 rounded-xl font-mono text-xs sm:text-sm text-gray-600 dark:text-gray-400 hover:text-rose-600 dark:hover:text-rose-300 transition-colors"
+          href="javascript:void(0)"
+          data-hero-wa={Buffer.from(portfolioConfig.contact.whatsappUrl).toString('base64')}
+          class="inline-flex items-center gap-2 px-4 py-3 rounded-xl font-mono text-xs sm:text-sm text-gray-600 dark:text-gray-400 hover:text-rose-600 dark:hover:text-rose-300 transition-colors cursor-pointer"
+          title="Abrir WhatsApp"
         >
           <span>Falar no WhatsApp →</span>
         </a>
@@ -131,3 +131,20 @@ import { withBase } from '@/utils/base';
 
   </div>
 </section>
+
+<script>
+  function setupHeroWa() {
+    const trigger = document.querySelector('[data-hero-wa]');
+    if (trigger) {
+      trigger.addEventListener('click', (e) => {
+        e.preventDefault();
+        const b64 = trigger.getAttribute('data-hero-wa');
+        if (b64) {
+          window.open(atob(b64), '_blank', 'noopener,noreferrer');
+        }
+      });
+    }
+  }
+  setupHeroWa();
+  document.addEventListener('astro:after-swap', setupHeroWa);
+</script>

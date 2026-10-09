@@ -1,0 +1,19 @@
+# Monica Carvalho — Portfólio de Arquitetura & Urbanismo
+
+> Estudante de Arquitetura e Urbanismo na Universidade Paulista (UNIP) com 11+ anos de experiência prévia no mercado imobiliário e incorporação (Plano&Plano, Queiroz Galvão, Rossi, PDG). Especialização prática em Graphisoft Archicad (BIM), QGIS, AutoCAD e desenho urbano.
+
+## Links Principais
+- Website: https://monicascarvalho.github.io/
+- Projetos Acadêmicos: https://monicascarvalho.github.io/projetos
+- Edifício Multifuncional Av. Paulista: https://monicascarvalho.github.io/projetos/01-edificio-multifuncional-paulista
+- CEU - Centro Educacional Unificado: https://monicascarvalho.github.io/projetos/02-ceu-centro-educacional-unificado
+- Midiateca Santo Amaro: https://monicascarvalho.github.io/projetos/03-midiateca-intervencao-urbana
+- Requalificação Urbana Jardim Santo André: https://monicascarvalho.github.io/projetos/04-requalificacao-urbana-jardim-santo-andre
+- Currículo Vitae (PDF): https://monicascarvalho.github.io/docs/curriculo-monica-carvalho.pdf
+- LinkedIn: https://www.linkedin.com/in/monica-s-carvalho/
+
+## Competências Técnicas
+- BIM & Modelagem: Graphisoft Archicad (plantas, cortes, modelagem 3D, documentação técnica)
+- Planejamento Urbano: QGIS, morfologia urbana, zoneamento e impacto de vizinhança
+- Desenho Técnico: AutoCAD, normas ABNT, NBR 9050 (Acessibilidade)
+- Mercado Imobiliário: Incorporação, viabilidade econômico-financeira, financiamento (PJ e repasses), processos cartorários (CRI)

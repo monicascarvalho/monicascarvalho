@@ -22,6 +22,12 @@ export interface PortfolioConfig {
     phone: string;
     whatsappUrl: string;
     location: string;
+    linkedin?: string;
+    instagram?: string;
+    github?: string;
+  };
+  seo?: {
+    metaDescription: string;
   };
   experienceSummary: {
     years: string;
@@ -64,20 +70,26 @@ export const portfolioConfig: PortfolioConfig = {
       "Financiamento & Regularização CRI"
     ]
   },
+  seo: {
+    metaDescription: "Estudante de Arquitetura (UNIP) com 11+ anos no setor imobiliário, aliando vivência em incorporadoras ao domínio de Archicad (BIM), QGIS e desenho técnico."
+  },
   downloads: {
     cvUrl: "/docs/curriculo-monica-carvalho.pdf",
     portfolioPdfUrl: "/docs/curriculo-monica-carvalho.pdf"
   },
   contact: {
-    email: "monica.carvalho.arq@gmail.com",
+    email: "monica.carvalho60@gmail.com",
     phone: "(11) 97626-4686",
-    whatsappUrl: "https://wa.me/5511976264686",
-    location: "São Paulo - SP (Morumbi)"
+    whatsappUrl: "https://wa.me/5511976264686?text=Ol%C3%A1%20Monica%2C%20vi%20seu%20portf%C3%B3lio%20de%20arquitetura%20e%20gostaria%20de%20conversar.",
+    location: "São Paulo - SP (Morumbi)",
+    linkedin: "https://www.linkedin.com/in/monica-s-carvalho/",
+    instagram: "", // Preencha com o link do Instagram quando criado (ex: https://instagram.com/monicacarvalho.arq). Ele aparecerá automaticamente no site e nos dados estruturados do Google.
+    github: "https://github.com/monicascarvalho"
   },
   experienceSummary: {
     years: "11+ anos",
     title: "Trajetória Prévia no Mercado Imobiliário & Incorporação",
-    companies: ["Plano&Plano", "Queiroz Galvão", "Solv", "Rossi", "PDG", "Abitare / Goldfarb"],
+    companies: ["Plano&Plano", "Queiroz Galvão", "Solv", "Rossi", "PDG", "Abitare", "Goldfarb"],
     description: "Sólida experiência em incorporadoras de grande porte com processos de crédito corporativo, financiamento imobiliário (PJ e repasses), conformidade contratual e registro de escrituras em Cartórios de Imóveis (CRI).",
     highlights: [
       "Visão executiva de produto imobiliário e viabilidade financeira",

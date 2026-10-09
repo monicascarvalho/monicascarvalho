@@ -11,16 +11,70 @@ interface Props {
   description?: string;
   image?: string;
   isHome?: boolean;
+  schema?: Record<string, unknown>;
 }
 
 const {
   title = `${portfolioConfig.personal.name} | Portfólio de Arquitetura & Urbanismo`,
-  description = portfolioConfig.personal.shortPitch,
+  description = portfolioConfig.seo?.metaDescription || portfolioConfig.personal.shortPitch,
   image = '/images/projects/01-edificio-multifunctional-paulista/prancha-1.png',
   isHome = true,
+  schema: customSchema,
 } = Astro.props;
 
-const canonicalURL = new URL(Astro.url.pathname, Astro.site || 'http://localhost:4321');
+const siteOrigin = Astro.site ? Astro.site.toString().replace(/\/$/, '') : 'https://monicascarvalho.github.io';
+const canonicalURL = new URL(Astro.url.pathname, siteOrigin);
+const absoluteImageURL = new URL(withBase(image), siteOrigin).toString();
+
+// Dynamic sameAs list: Automatically includes Instagram if populated in config
+const sameAsLinks = [
+  portfolioConfig.contact.linkedin,
+  portfolioConfig.contact.github,
+  portfolioConfig.contact.instagram,
+].filter((link): link is string => Boolean(link && link.trim().length > 0));
+
+const personSchema = {
+  "@context": "https://schema.org",
+  "@type": "Person",
+  "name": portfolioConfig.personal.name,
+  "alternateName": portfolioConfig.personal.fullName,
+  "jobTitle": "Estudante de Arquitetura e Urbanismo",
+  "description": description,
+  "url": siteOrigin,
+  "image": absoluteImageURL,
+  "affiliation": {
+    "@type": "EducationalOrganization",
+    "name": portfolioConfig.personal.institution
+  },
+  "alumniOf": {
+    "@type": "EducationalOrganization",
+    "name": portfolioConfig.personal.institution
+  },
+  "knowsAbout": [
+    "Archicad",
+    "Modelagem BIM",
+    "QGIS",
+    "Desenho Técnico",
+    "AutoCAD",
+    "Projetos Executivos",
+    "Acessibilidade NBR 9050",
+    "Legislação Imobiliária",
+    "Planejamento Urbano"
+  ],
+  "sameAs": sameAsLinks
+};
+
+const websiteSchema = {
+  "@context": "https://schema.org",
+  "@type": "WebSite",
+  "name": `${portfolioConfig.personal.name} - Portfólio de Arquitetura & Urbanismo`,
+  "url": siteOrigin,
+  "inLanguage": "pt-BR",
+  "author": {
+    "@type": "Person",
+    "name": portfolioConfig.personal.name
+  }
+};
 ---
 
 <!doctype html>
@@ -37,12 +91,28 @@ const canonicalURL = new URL(Astro.url.pathname, Astro.site || 'http://localhost
     <meta name="description" content={description} />
     <link rel="canonical" href={canonicalURL} />
 
-    <!-- Open Graph / Facebook / LinkedIn -->
+    <!-- Open Graph / Facebook / LinkedIn / WhatsApp -->
     <meta property="og:type" content="website" />
     <meta property="og:url" content={canonicalURL} />
     <meta property="og:title" content={title} />
     <meta property="og:description" content={description} />
-    <meta property="og:image" content={withBase(image)} />
+    <meta property="og:image" content={absoluteImageURL} />
+    <meta property="og:locale" content="pt_BR" />
+    <meta property="og:site_name" content={portfolioConfig.personal.name} />
+
+    <!-- Twitter / X Cards -->
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:url" content={canonicalURL} />
+    <meta name="twitter:title" content={title} />
+    <meta name="twitter:description" content={description} />
+    <meta name="twitter:image" content={absoluteImageURL} />
+
+    <!-- JSON-LD Structured Data for Search Engines & Entities -->
+    <script type="application/ld+json" set:html={JSON.stringify(personSchema)} />
+    <script type="application/ld+json" set:html={JSON.stringify(websiteSchema)} />
+    {customSchema && (
+      <script type="application/ld+json" set:html={JSON.stringify(customSchema)} />
+    )}
 
     <!-- Preconnect Google Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com" />

@@ -11,6 +11,27 @@ interface Props {
 
 const { project, prevProject, nextProject } = Astro.props;
 const { data } = project;
+
+const siteOrigin = Astro.site ? Astro.site.toString().replace(/\/$/, '') : 'https://monicascarvalho.github.io';
+const projectURL = new URL(withBase(`/projetos/${project.slug}`), siteOrigin).toString();
+const heroImageURL = new URL(withBase(data.heroImage), siteOrigin).toString();
+
+const projectSchema = {
+  "@context": "https://schema.org",
+  "@type": "CreativeWork",
+  "name": data.title,
+  "headline": data.title,
+  "description": data.shortDescription,
+  "url": projectURL,
+  "image": heroImageURL,
+  "dateCreated": data.year,
+  "creator": {
+    "@type": "Person",
+    "name": "Monica Carvalho"
+  },
+  "genre": "Arquitetura e Urbanismo",
+  "keywords": [data.category, ...(data.tags || []), ...(data.techStack || [])].join(", ")
+};
 ---
 
 <BaseLayout
@@ -18,6 +39,7 @@ const { data } = project;
   description={data.shortDescription}
   image={data.heroImage}
   isHome={false}
+  schema={projectSchema}
 >
   <div class="pswp-gallery-context">
     <!-- Breadcrumb & Top Bar -->
